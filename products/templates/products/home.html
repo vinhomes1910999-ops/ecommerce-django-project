@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Trang chủ{% endblock %}
+{% block content %}
+
+<!-- ===== HERO BANNER ===== -->
+<section class="bg-gradient-to-r from-brand to-brand-dark rounded-2xl text-white p-8 md:p-14 mb-10 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div>
+        <h1 class="text-3xl md:text-4xl font-bold mb-3">Mua sắm thỏa thích, giá cực tốt</h1>
+        <p class="text-white/80 mb-5 max-w-md">Hàng ngàn sản phẩm chất lượng, giao hàng nhanh, đổi trả dễ dàng.</p>
+        <a href="{% url 'products:product_list' %}" class="inline-block bg-white text-brand font-semibold px-6 py-2.5 rounded-lg hover:bg-gray-100 transition">
+            Mua ngay <i class="bi bi-arrow-right"></i>
+        </a>
+    </div>
+    <i class="bi bi-bag-check text-8xl text-white/30 hidden md:block"></i>
+</section>
+
+<!-- ===== DANH MỤC ===== -->
+{% if categories %}
+<section class="mb-10">
+    <h2 class="text-xl font-bold mb-4">Danh mục nổi bật</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+        {% for cat in categories %}
+        <a href="{% url 'products:product_list' %}?category={{ cat.id }}"
+           class="card text-center hover:border-brand group">
+            <i class="bi bi-grid text-3xl text-brand mb-2 block"></i>
+            <span class="text-sm font-medium group-hover:text-brand">{{ cat.name }}</span>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- ===== SẢN PHẨM NỔI BẬT ===== -->
+<section>
+    <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-bold">Sản phẩm nổi bật</h2>
+        <a href="{% url 'products:product_list' %}" class="text-brand hover:underline text-sm">
+            Xem tất cả <i class="bi bi-arrow-right"></i>
+        </a>
+    </div>
+
+    {% if featured_products %}
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+        {% for product in featured_products %}
+            {% include 'products/includes/product_card.html' with product=product %}
+        {% endfor %}
+    </div>
+    {% else %}
+        <p class="text-gray-500">Chưa có sản phẩm nào. Vào Admin để thêm sản phẩm.</p>
+    {% endif %}
+</section>
+
+{% endblock %}

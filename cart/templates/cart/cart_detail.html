@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}Giỏ hàng{% endblock %}
+{% block content %}
+
+<h1 class="text-2xl font-bold mb-6">Giỏ hàng của bạn</h1>
+
+{% if cart.items.all %}
+<div class="grid lg:grid-cols-3 gap-8">
+
+    <!-- ===== DANH SÁCH SẢN PHẨM TRONG GIỎ ===== -->
+    <div class="lg:col-span-2 space-y-4">
+        {% for item in cart.items.all %}
+        <div class="card flex flex-col sm:flex-row items-center gap-4">
+            <a href="{% url 'products:product_detail' item.product.slug %}" class="shrink-0">
+                <div class="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+                    {% if item.product.images.first %}
+                        <img src="{{ item.product.images.first.image.url }}" class="w-full h-full object-cover">
+                    {% else %}
+                        <i class="bi bi-image text-2xl text-gray-300"></i>
+                    {% endif %}
+                </div>
+            </a>
+
+            <div class="flex-1 text-center sm:text-left">
+                <a href="{% url 'products:product_detail' item.product.slug %}"
+                   class="font-medium text-gray-800 hover:text-brand">{{ item.product.name }}</a>
+                <p class="text-sm text-gray-500 mt-1">{{ item.product.current_price|floatformat:0 }}₫ / sản phẩm</p>
+            </div>
+
+            <!-- Cập nhật số lượng -->
+            <form method="post" action="{% url 'cart:update_item' item.id %}"
+                  class="flex items-center border border-gray-300 rounded-lg" x-data="{ qty: {{ item.quantity }} }">
+                {% csrf_token %}
+                <button type="button" @click="qty > 0 && qty--"
+                        class="w-9 h-9 flex items-center justify-center hover:bg-gray-100">−</button>
+                <input type="number" name="quantity" x-model="qty" min="0" max="{{ item.product.stock }}"
+                       class="w-12 text-center border-0 focus:ring-0 text-sm">
+                <button type="button" @click="qty < {{ item.product.stock }} && qty++"
+                        class="w-9 h-9 flex items-center justify-center hover:bg-gray-100">+</button>
+                <button type="submit" class="px-3 h-9 text-xs text-brand hover:underline border-l">Cập nhật</button>
+            </form>
+
+            <div class="w-28 text-center sm:text-right font-semibold text-gray-900">
+                {{ item.subtotal|floatformat:0 }}₫
+            </div>
+
+            <form method="post" action="{% url 'cart:remove_item' item.id %}">
+                {% csrf_token %}
+                <button type="submit" class="text-gray-400 hover:text-red-500 transition" title="Xóa">
+                    <i class="bi bi-trash text-lg"></i>
+                </button>
+            </form>
+        </div>
+        {% endfor %}
+
+        <a href="{% url 'products:product_list' %}" class="inline-flex items-center gap-1 text-brand hover:underline text-sm mt-2">
+            <i class="bi bi-arrow-left"></i> Tiếp tục mua sắm
+        </a>
+    </div>
+
+    <!-- ===== TÓM TẮT ĐƠN HÀNG ===== -->
+    <div class="lg:col-span-1">
+        <div class="card sticky top-20">
+            <h2 class="font-bold text-lg mb-4">Tóm tắt đơn hàng</h2>
+            <div class="flex justify-between text-sm text-gray-600 mb-2">
+                <span>Số lượng sản phẩm</span>
+                <span>{{ cart.total_items }}</span>
+            </div>
+            <div class="flex justify-between text-sm text-gray-600 mb-4 pb-4 border-b">
+                <span>Tạm tính</span>
+                <span>{{ cart.total_price|floatformat:0 }}₫</span>
+            </div>
+            <div class="flex justify-between font-bold text-lg mb-6">
+                <span>Tổng cộng</span>
+                <span class="text-red-600">{{ cart.total_price|floatformat:0 }}₫</span>
+            </div>
+            <a href="{% url 'orders:checkout' %}" class="btn-primary w-full text-center block">
+                Tiến hành đặt hàng <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% else %}
+<div class="text-center py-20">
+    <i class="bi bi-cart-x text-6xl text-gray-300 mb-4 block"></i>
+    <p class="text-gray-500 mb-4">Giỏ hàng của bạn đang trống.</p>
+    <a href="{% url 'products:product_list' %}" class="btn-primary inline-block">
+        Bắt đầu mua sắm
+    </a>
+</div>
+{% endif %}
+
+{% endblock %}

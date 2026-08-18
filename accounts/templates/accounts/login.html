@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Đăng nhập{% endblock %}
+{% block content %}
+
+<div class="max-w-md mx-auto py-10">
+    <div class="card">
+        <div class="text-center mb-6">
+            <i class="bi bi-shop text-4xl text-brand"></i>
+            <h1 class="text-xl font-bold mt-2">Đăng nhập tài khoản</h1>
+            <p class="text-gray-500 text-sm">Chào mừng bạn quay lại My Shop</p>
+        </div>
+
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+            <div class="bg-red-50 text-red-600 text-sm p-3 rounded-lg">
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+
+            <div>
+                <label class="block text-sm font-medium mb-1">Tên đăng nhập</label>
+                <input type="text" name="username" required autofocus
+                       class="w-full rounded-lg border-gray-300 text-sm focus:ring-brand focus:border-brand">
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-1">Mật khẩu</label>
+                <input type="password" name="password" required
+                       class="w-full rounded-lg border-gray-300 text-sm focus:ring-brand focus:border-brand">
+            </div>
+
+            <button type="submit" class="btn-primary w-full">Đăng nhập</button>
+        </form>
+
+        <p class="text-center text-sm text-gray-500 mt-5">
+            Chưa có tài khoản?
+            <a href="{% url 'accounts:register' %}" class="text-brand font-medium hover:underline">Đăng ký ngay</a>
+        </p>
+    </div>
+</div>
+
+{% endblock %}

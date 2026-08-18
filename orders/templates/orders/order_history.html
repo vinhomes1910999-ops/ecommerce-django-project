@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Đơn hàng của tôi{% endblock %}
+{% block content %}
+
+<h1 class="text-2xl font-bold mb-6">Đơn hàng của tôi</h1>
+
+{% if orders %}
+<div class="space-y-4">
+    {% for order in orders %}
+    <div class="card flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+            <p class="font-semibold text-gray-900">{{ order.order_code }}</p>
+            <p class="text-sm text-gray-500">{{ order.created_at|date:"d/m/Y H:i" }}</p>
+        </div>
+
+        <div>
+            {% if order.status == 'pending' %}
+                <span class="bg-yellow-100 text-yellow-700 text-xs font-medium px-3 py-1 rounded-full">{{ order.get_status_display }}</span>
+            {% elif order.status == 'confirmed' %}
+                <span class="bg-blue-100 text-blue-700 text-xs font-medium px-3 py-1 rounded-full">{{ order.get_status_display }}</span>
+            {% elif order.status == 'shipping' %}
+                <span class="bg-purple-100 text-purple-700 text-xs font-medium px-3 py-1 rounded-full">{{ order.get_status_display }}</span>
+            {% elif order.status == 'completed' %}
+                <span class="bg-green-100 text-green-700 text-xs font-medium px-3 py-1 rounded-full">{{ order.get_status_display }}</span>
+            {% else %}
+                <span class="bg-red-100 text-red-700 text-xs font-medium px-3 py-1 rounded-full">{{ order.get_status_display }}</span>
+            {% endif %}
+        </div>
+
+        <div class="font-semibold text-red-600">{{ order.total_amount|floatformat:0 }}₫</div>
+
+        <a href="{% url 'orders:order_detail' order.order_code %}"
+           class="text-brand hover:underline text-sm font-medium">Xem chi tiết →</a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="text-center py-20">
+    <i class="bi bi-receipt text-6xl text-gray-300 mb-4 block"></i>
+    <p class="text-gray-500 mb-4">Bạn chưa có đơn hàng nào.</p>
+    <a href="{% url 'products:product_list' %}" class="btn-primary inline-block">Mua sắm ngay</a>
+</div>
+{% endif %}
+
+{% endblock %}

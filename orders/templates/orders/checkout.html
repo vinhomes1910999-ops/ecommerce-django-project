@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block title %}Thanh toán{% endblock %}
+{% block content %}
+
+<h1 class="text-2xl font-bold mb-6">Thanh toán đơn hàng</h1>
+
+<form method="post" class="grid lg:grid-cols-3 gap-8">
+    {% csrf_token %}
+
+    <!-- ===== THÔNG TIN GIAO HÀNG ===== -->
+    <div class="lg:col-span-2 space-y-6">
+        <div class="card">
+            <h2 class="font-bold text-lg mb-4"><i class="bi bi-truck text-brand"></i> Thông tin giao hàng</h2>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1">Địa chỉ giao hàng <span class="text-red-500">*</span></label>
+                    <input type="text" name="shipping_address" required value="{{ user.address }}"
+                           placeholder="Số nhà, tên đường, phường/xã, quận/huyện..."
+                           class="w-full rounded-lg border-gray-300 text-sm focus:ring-brand focus:border-brand">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Số điện thoại <span class="text-red-500">*</span></label>
+                    <input type="text" name="shipping_phone" required value="{{ user.phone }}"
+                           class="w-full rounded-lg border-gray-300 text-sm focus:ring-brand focus:border-brand">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Ghi chú đơn hàng</label>
+                    <textarea name="note" rows="3" placeholder="Ví dụ: giao giờ hành chính, gọi trước khi giao..."
+                              class="w-full rounded-lg border-gray-300 text-sm focus:ring-brand focus:border-brand"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHƯƠNG THỨC THANH TOÁN ===== -->
+        <div class="card" x-data="{ method: 'cod' }">
+            <h2 class="font-bold text-lg mb-4"><i class="bi bi-credit-card text-brand"></i> Phương thức thanh toán</h2>
+
+            <div class="space-y-3">
+                <label class="flex items-center gap-3 border rounded-lg p-3 cursor-pointer hover:border-brand"
+                       :class="method === 'cod' ? 'border-brand bg-brand/5' : 'border-gray-200'">
+                    <input type="radio" name="payment_method" value="cod" x-model="method" class="text-brand focus:ring-brand">
+                    <i class="bi bi-cash-coin text-xl text-gray-600"></i>
+                    <div>
+                        <p class="font-medium text-sm">Thanh toán khi nhận hàng (COD)</p>
+                        <p class="text-xs text-gray-500">Thanh toán bằng tiền mặt khi nhận hàng</p>
+                    </div>
+                </label>
+
+                <label class="flex items-center gap-3 border rounded-lg p-3 cursor-pointer hover:border-brand"
+                       :class="method === 'bank_transfer' ? 'border-brand bg-brand/5' : 'border-gray-200'">
+                    <input type="radio" name="payment_method" value="bank_transfer" x-model="method" class="text-brand focus:ring-brand">
+                    <i class="bi bi-bank text-xl text-gray-600"></i>
+                    <div>
+                        <p class="font-medium text-sm">Chuyển khoản ngân hàng</p>
+                        <p class="text-xs text-gray-500">Chuyển khoản trước khi giao hàng</p>
+                    </div>
+                </label>
+
+                <label class="flex items-center gap-3 border rounded-lg p-3 cursor-pointer hover:border-brand"
+                       :class="method === 'momo' ? 'border-brand bg-brand/5' : 'border-gray-200'">
+                    <input type="radio" name="payment_method" value="momo" x-model="method" class="text-brand focus:ring-brand">
+                    <i class="bi bi-phone text-xl text-gray-600"></i>
+                    <div>
+                        <p class="font-medium text-sm">Ví Momo</p>
+                        <p class="text-xs text-gray-500">Thanh toán qua ứng dụng Momo</p>
+                    </div>
+                </label>
+
+                <label class="flex items-center gap-3 border rounded-lg p-3 cursor-pointer hover:border-brand"
+                       :class="method === 'vnpay' ? 'border-brand bg-brand/5' : 'border-gray-200'">
+                    <input type="radio" name="payment_method" value="vnpay" x-model="method" class="text-brand focus:ring-brand">
+                    <i class="bi bi-credit-card-2-front text-xl text-gray-600"></i>
+                    <div>
+                        <p class="font-medium text-sm">VNPay</p>
+                        <p class="text-xs text-gray-500">Thanh toán qua cổng VNPay</p>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TÓM TẮT ĐƠN HÀNG ===== -->
+    <div class="lg:col-span-1">
+        <div class="card sticky top-20">
+            <h2 class="font-bold text-lg mb-4">Đơn hàng của bạn</h2>
+
+            <div class="space-y-3 mb-4 pb-4 border-b max-h-64 overflow-y-auto">
+                {% for item in cart.items.all %}
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-600">{{ item.product.name }} x{{ item.quantity }}</span>
+                    <span class="font-medium">{{ item.subtotal|floatformat:0 }}₫</span>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="flex justify-between text-sm text-gray-600 mb-2">
+                <span>Tạm tính</span>
+                <span>{{ cart.total_price|floatformat:0 }}₫</span>
+            </div>
+            <div class="flex justify-between text-sm text-gray-600 mb-4">
+                <span>Phí vận chuyển</span>
+                <span class="text-green-600">Miễn phí</span>
+            </div>
+            <div class="flex justify-between font-bold text-lg mb-6 pt-4 border-t">
+                <span>Tổng cộng</span>
+                <span class="text-red-600">{{ cart.total_price|floatformat:0 }}₫</span>
+            </div>
+
+            <button type="submit" class="btn-primary w-full">
+                <i class="bi bi-check-circle"></i> Xác nhận đặt hàng
+            </button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
