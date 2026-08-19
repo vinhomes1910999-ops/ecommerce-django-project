@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom component classes — tái sử dụng nhiều nơi */
+@layer components {
+  .btn-primary {
+    @apply bg-brand hover:bg-brand-dark text-white font-medium py-2 px-4 rounded-lg transition;
+  }
+  .btn-outline {
+    @apply border border-gray-300 hover:bg-gray-100 font-medium py-2 px-4 rounded-lg transition;
+  }
+  .price-old {
+    @apply line-through text-gray-400 text-sm;
+  }
+  .price-sale {
+    @apply text-red-600 font-bold text-lg;
+  }
+  .price-normal {
+    @apply text-gray-900 font-bold text-lg;
+  }
+  .card {
+    @apply bg-white rounded-xl shadow-sm hover:shadow-md transition p-4 border border-gray-100;
+  }
+}
+[x-cloak] {
+    display: none !important;
+}

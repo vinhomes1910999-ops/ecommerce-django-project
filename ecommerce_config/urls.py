@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .admin_dashboard import dashboard_stats
 
 urlpatterns = [
     path('god/', admin.site.urls),
@@ -10,6 +11,8 @@ urlpatterns = [
     path('orders/', include('orders.urls')),
     path('pages/', include('pages.urls')),
     path('', include('products.urls')),
+    path('admin/dashboard-stats/', dashboard_stats, name='admin_dashboard_stats'),
+
 ]
 
 # Cấu hình phục vụ file media và static trong quá trình phát triển (phải để ở cuối cùng)

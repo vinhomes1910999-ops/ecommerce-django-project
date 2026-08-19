@@ -3,15 +3,40 @@ from django.db.models import Avg, Q
 from django.shortcuts import get_object_or_404, render
 
 from .models import Category, Comment, Product, Review
+from datetime import datetime
+from django.db.models import Q
+from django.http import JsonResponse
+from django.urls import reverse
+from django.db.models import Sum, Avg, Q
 
 
 def home_view(request):
-    """Trang chủ: hiển thị sản phẩm nổi bật + danh mục."""
+    """Trang chủ: sản phẩm nổi bật + danh mục + hot deal + đánh giá khách hàng."""
     featured_products = Product.objects.filter(is_active=True).order_by('-sold_count')[:8]
-    categories = Category.objects.filter(parent__isnull=True)  # chỉ lấy danh mục cha
+    categories = Category.objects.filter(parent__isnull=True)
+
+    # Sản phẩm đang giảm giá, sắp theo % giảm nhiều nhất
+    hot_deals = Product.objects.filter(
+        is_active=True, sale_price__isnull=False
+    ).order_by('-created_at')[:4]
+
+    # Đánh giá 5 sao có nội dung, mới nhất — dùng làm "testimonial"
+    testimonials = Review.objects.filter(
+        rating__gte=4
+    ).exclude(content='').select_related('user', 'product').order_by('-created_at')[:3]
+
+    stats = {
+        'product_count': Product.objects.filter(is_active=True).count(),
+        'category_count': Category.objects.count(),
+        'customer_count': Product.objects.aggregate(total=Sum('sold_count'))['total'] or 0,
+    }
+
     return render(request, 'products/home.html', {
         'featured_products': featured_products,
         'categories': categories,
+        'hot_deals': hot_deals,
+        'testimonials': testimonials,
+        'stats': stats,
     })
 
 
@@ -132,3 +157,80 @@ def add_comment_view(request, slug):
             messages.success(request, 'Đã đăng bình luận.')
 
     return redirect('products:product_detail', slug=slug)
+
+
+
+# Từ khóa liên quan theo tháng — chỉnh sửa tùy theo mặt hàng thực tế của bạn
+SEASONAL_KEYWORDS = {
+    1:  ['áo khoác', 'áo len', 'tết'],
+    2:  ['áo khoác', 'tết', 'du xuân'],
+    3:  ['áo sơ mi'],
+    4:  ['áo thun', 'quần short'],
+    5:  ['áo thun', 'mùa hè'],
+    6:  ['áo thun', 'quần short'],
+    7:  ['áo thun', 'mùa hè'],
+    8:  ['tựu trường', 'đồng phục'],
+    9:  ['tựu trường', 'áo sơ mi'],
+    10: ['áo khoác nhẹ'],
+    11: ['áo khoác', 'sale'],
+    12: ['áo khoác', 'giáng sinh'],
+}
+
+
+def _serialize_product(p):
+    first_image = p.images.first()
+    return {
+        'name': p.name,
+        'slug': p.slug,
+        'price': float(p.current_price),
+        'image': first_image.image.url if first_image else None,
+        'url': reverse('products:product_detail', args=[p.slug]),
+    }
+
+
+def search_suggestions_view(request):
+    """API JSON cho ô tìm kiếm: gợi ý theo mùa/trending (chưa gõ) hoặc live search (đang gõ)."""
+    query = request.GET.get('q', '').strip()
+
+    # ===== ĐANG GÕ — trả kết quả khớp trực tiếp =====
+    if query:
+        products = Product.objects.filter(
+            Q(name__icontains=query) | Q(category__name__icontains=query),
+            is_active=True
+        ).select_related('category').distinct()[:6]
+
+        return JsonResponse({
+            'mode': 'live',
+            'products': [_serialize_product(p) for p in products],
+        })
+
+    # ===== CHƯA GÕ GÌ — gợi ý theo mùa + bán chạy =====
+    current_month = datetime.now().month
+    keywords = SEASONAL_KEYWORDS.get(current_month, [])
+
+    seasonal_qs = Product.objects.none()
+    for kw in keywords:
+        seasonal_qs |= Product.objects.filter(is_active=True, name__icontains=kw)
+    seasonal_products = list(seasonal_qs.select_related('category').distinct()[:4])
+
+    # Không có sản phẩm khớp từ khóa mùa nào -> fallback sang bán chạy nhất
+    if not seasonal_products:
+        seasonal_products = list(
+            Product.objects.filter(is_active=True).order_by('-sold_count')
+            .select_related('category')[:4]
+        )
+
+    trending_products = list(
+        Product.objects.filter(is_active=True)
+        .exclude(id__in=[p.id for p in seasonal_products])
+        .order_by('-sold_count').select_related('category')[:4]
+    )
+
+    trending_keywords = list(Category.objects.all().values_list('name', flat=True)[:8])
+
+    return JsonResponse({
+        'mode': 'suggest',
+        'trending_keywords': trending_keywords,
+        'seasonal_products': [_serialize_product(p) for p in seasonal_products],
+        'trending_products': [_serialize_product(p) for p in trending_products],
+    })

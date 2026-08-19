@@ -3,7 +3,7 @@
 {% block content %}
 
 <!-- ===== HERO BANNER ===== -->
-<section class="bg-gradient-to-r from-brand to-brand-dark rounded-2xl text-white p-8 md:p-14 mb-10 flex flex-col md:flex-row items-center justify-between gap-6">
+<section class="bg-gradient-to-r from-brand to-brand-dark rounded-2xl text-white p-8 md:p-14 mb-8 flex flex-col md:flex-row items-center justify-between gap-6">
     <div>
         <h1 class="text-3xl md:text-4xl font-bold mb-3">Mua sắm thỏa thích, giá cực tốt</h1>
         <p class="text-white/80 mb-5 max-w-md">Hàng ngàn sản phẩm chất lượng, giao hàng nhanh, đổi trả dễ dàng.</p>
@@ -12,6 +12,22 @@
         </a>
     </div>
     <i class="bi bi-bag-check text-8xl text-white/30 hidden md:block"></i>
+</section>
+
+<!-- ===== THANH THỐNG KÊ NHANH ===== -->
+<section class="grid grid-cols-3 gap-4 mb-10">
+    <div class="card text-center py-5">
+        <p class="text-2xl md:text-3xl font-bold text-brand">{{ stats.product_count }}+</p>
+        <p class="text-xs md:text-sm text-gray-500 mt-1">Sản phẩm</p>
+    </div>
+    <div class="card text-center py-5">
+        <p class="text-2xl md:text-3xl font-bold text-brand">{{ stats.category_count }}+</p>
+        <p class="text-xs md:text-sm text-gray-500 mt-1">Danh mục</p>
+    </div>
+    <div class="card text-center py-5">
+        <p class="text-2xl md:text-3xl font-bold text-brand">{{ stats.customer_count }}+</p>
+        <p class="text-xs md:text-sm text-gray-500 mt-1">Đơn hàng đã giao</p>
+    </div>
 </section>
 
 <!-- ===== DANH MỤC ===== -->
@@ -30,8 +46,31 @@
 </section>
 {% endif %}
 
+<!-- ===== FLASH SALE / HOT DEAL ===== -->
+{% if hot_deals %}
+<section class="mb-10">
+    <div class="bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl p-5 md:p-6">
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                <i class="bi bi-lightning-charge-fill"></i> Săn deal hời
+            </h2>
+            <a href="{% url 'products:product_list' %}?sort=price_asc" class="text-white text-sm hover:underline">
+                Xem thêm <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {% for product in hot_deals %}
+                <div class="bg-white rounded-xl p-3">
+                    {% include 'products/includes/product_card.html' with product=product %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
 <!-- ===== SẢN PHẨM NỔI BẬT ===== -->
-<section>
+<section class="mb-14">
     <div class="flex items-center justify-between mb-4">
         <h2 class="text-xl font-bold">Sản phẩm nổi bật</h2>
         <a href="{% url 'products:product_list' %}" class="text-brand hover:underline text-sm">
@@ -48,6 +87,82 @@
     {% else %}
         <p class="text-gray-500">Chưa có sản phẩm nào. Vào Admin để thêm sản phẩm.</p>
     {% endif %}
+</section>
+
+<!-- ===== VÌ SAO CHỌN CHÚNG TÔI ===== -->
+<section class="mb-14">
+    <h2 class="text-xl font-bold mb-6 text-center">Vì sao chọn My Shop?</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div class="text-center">
+            <div class="w-14 h-14 rounded-full bg-brand/10 flex items-center justify-center mx-auto mb-3">
+                <i class="bi bi-truck text-2xl text-brand"></i>
+            </div>
+            <p class="font-medium text-sm mb-1">Giao hàng nhanh</p>
+            <p class="text-xs text-gray-500">Miễn phí ship đơn từ 500K</p>
+        </div>
+        <div class="text-center">
+            <div class="w-14 h-14 rounded-full bg-brand/10 flex items-center justify-center mx-auto mb-3">
+                <i class="bi bi-arrow-repeat text-2xl text-brand"></i>
+            </div>
+            <p class="font-medium text-sm mb-1">Đổi trả dễ dàng</p>
+            <p class="text-xs text-gray-500">Trong vòng 7 ngày</p>
+        </div>
+        <div class="text-center">
+            <div class="w-14 h-14 rounded-full bg-brand/10 flex items-center justify-center mx-auto mb-3">
+                <i class="bi bi-shield-check text-2xl text-brand"></i>
+            </div>
+            <p class="font-medium text-sm mb-1">Thanh toán an toàn</p>
+            <p class="text-xs text-gray-500">Bảo mật thông tin tuyệt đối</p>
+        </div>
+        <div class="text-center">
+            <div class="w-14 h-14 rounded-full bg-brand/10 flex items-center justify-center mx-auto mb-3">
+                <i class="bi bi-headset text-2xl text-brand"></i>
+            </div>
+            <p class="font-medium text-sm mb-1">Hỗ trợ 24/7</p>
+            <p class="text-xs text-gray-500">Luôn sẵn sàng giải đáp</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ĐÁNH GIÁ KHÁCH HÀNG ===== -->
+{% if testimonials %}
+<section class="mb-14">
+    <h2 class="text-xl font-bold mb-6 text-center">Khách hàng nói gì?</h2>
+    <div class="grid md:grid-cols-3 gap-5">
+        {% for review in testimonials %}
+        <div class="card">
+            <div class="flex text-yellow-500 text-sm mb-3">
+                {% for i in "12345" %}
+                    {% if forloop.counter <= review.rating %}
+                        <i class="bi bi-star-fill"></i>
+                    {% else %}
+                        <i class="bi bi-star"></i>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <p class="text-sm text-gray-600 mb-4 italic">"{{ review.content }}"</p>
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-brand/10 flex items-center justify-center text-brand font-semibold text-xs">
+                    {{ review.user.username|slice:":1"|upper }}
+                </div>
+                <div>
+                    <p class="text-sm font-medium">{{ review.user.username }}</p>
+                    <p class="text-xs text-gray-400">Đã mua {{ review.product.name }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- ===== CTA CUỐI TRANG ===== -->
+<section class="bg-gray-900 rounded-2xl text-white p-8 md:p-12 text-center mb-6">
+    <h2 class="text-2xl font-bold mb-2">Sẵn sàng mua sắm chưa?</h2>
+    <p class="text-gray-400 mb-6">Khám phá hàng ngàn sản phẩm đang chờ bạn.</p>
+    <a href="{% url 'products:product_list' %}" class="inline-block bg-brand hover:bg-brand-dark px-8 py-3 rounded-lg font-semibold transition">
+        Khám phá ngay
+    </a>
 </section>
 
 {% endblock %}

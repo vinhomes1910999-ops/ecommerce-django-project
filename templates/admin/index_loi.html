@@ -1,0 +1,97 @@
+{% extends "jazzmin/index.html" %}
+{% load static %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">📈 Doanh thu 7 ngày gần nhất</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="revenueChart" height="90"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">📦 Đơn hàng theo trạng thái</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="statusChart" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">🏆 Top 5 sản phẩm bán chạy</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="topProductsChart" height="150"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ block.super }}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script>
+fetch("{% url 'admin_dashboard_stats' %}")
+    .then(res => res.json())
+    .then(data => {
+
+        // ===== Biểu đồ doanh thu (line chart) =====
+        new Chart(document.getElementById('revenueChart'), {
+            type: 'line',
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    label: 'Doanh thu (₫)',
+                    data: data.revenue,
+                    borderColor: '#0d6efd',
+                    backgroundColor: 'rgba(13,110,253,0.1)',
+                    tension: 0.3,
+                    fill: true,
+                }]
+            },
+            options: { responsive: true, plugins: { legend: { display: false } } }
+        });
+
+        // ===== Biểu đồ trạng thái đơn (doughnut chart) =====
+        const statusLabels = { pending: 'Chờ xác nhận', confirmed: 'Đã xác nhận', shipping: 'Đang giao', completed: 'Hoàn thành', cancelled: 'Đã hủy' };
+        const statusColors = { pending: '#6c757d', confirmed: '#0d6efd', shipping: '#fd7e14', completed: '#198754', cancelled: '#dc3545' };
+
+        new Chart(document.getElementById('statusChart'), {
+            type: 'doughnut',
+            data: {
+                labels: data.orders_by_status.map(s => statusLabels[s.status] || s.status),
+                datasets: [{
+                    data: data.orders_by_status.map(s => s.count),
+                    backgroundColor: data.orders_by_status.map(s => statusColors[s.status] || '#ccc'),
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        // ===== Biểu đồ top sản phẩm (bar chart ngang) =====
+        new Chart(document.getElementById('topProductsChart'), {
+            type: 'bar',
+            data: {
+                labels: data.top_products.map(p => p.name),
+                datasets: [{
+                    label: 'Đã bán',
+                    data: data.top_products.map(p => p.sold_count),
+                    backgroundColor: '#0d6efd',
+                }]
+            },
+            options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false } } }
+        });
+    });
+</script>
+{% endblock %}

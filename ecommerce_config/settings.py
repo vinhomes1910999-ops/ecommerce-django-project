@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
     # Thư viện bên thứ ba
     'crispy_forms',
@@ -53,7 +54,36 @@ JAZZMIN_SETTINGS = {
     "site_header": "Quản trị Website",
     "site_brand": "My Shop",
     "welcome_sign": "Chào mừng đến trang quản trị",
-    "copyright": "Đồ án cuối kỳ",
+    "copyright": " ", 
+    
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "accounts.User": "fas fa-user-shield",
+        "cart.Cart": "fas fa-shopping-cart",
+        "orders.Order": "fas fa-file-invoice-dollar",
+        "pages.ContactMessage": "fas fa-envelope",
+        "pages.StaticPage": "fas fa-file-alt",
+        "products.Category": "fas fa-tags",
+        "products.Comments": "fas fa-comments",
+        "products.Product": "fas fa-box",
+        "products.Promotion": "fas fa-bullhorn",
+        "products.Review": "fas fa-star",
+    },
+
+    "order_with_respect_to": [
+        "products",
+        "orders",
+        "cart",
+        "accounts",
+        "auth",
+        "pages",
+    ],
+    
+    "hide_apps": ["auth"],
+    "show_version": False,
+
+    "custom_css": "css/custom_admin.css",
+    "custom_js": "js/custom_admin.js",
 }
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -147,7 +177,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'vi'
 TIME_ZONE = 'Asia/Ho_Chi_Minh'
 USE_I18N = True
-USE_TZ = True
+USE_TZ = False 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 LOGIN_URL = 'accounts:login'
