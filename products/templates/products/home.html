@@ -17,15 +17,15 @@
 <!-- ===== THANH THỐNG KÊ NHANH ===== -->
 <section class="grid grid-cols-3 gap-4 mb-10">
     <div class="card text-center py-5">
-        <p class="text-2xl md:text-3xl font-bold text-brand">{{ stats.product_count }}+</p>
+        <p class="text-2xl md:text-3xl font-bold text-brand">{{ stats.product_count|default:"0" }}+</p>
         <p class="text-xs md:text-sm text-gray-500 mt-1">Sản phẩm</p>
     </div>
     <div class="card text-center py-5">
-        <p class="text-2xl md:text-3xl font-bold text-brand">{{ stats.category_count }}+</p>
+        <p class="text-2xl md:text-3xl font-bold text-brand">{{ stats.category_count|default:"0" }}+</p>
         <p class="text-xs md:text-sm text-gray-500 mt-1">Danh mục</p>
     </div>
     <div class="card text-center py-5">
-        <p class="text-2xl md:text-3xl font-bold text-brand">{{ stats.customer_count }}+</p>
+        <p class="text-2xl md:text-3xl font-bold text-brand">{{ stats.customer_count|default:"0" }}+</p>
         <p class="text-xs md:text-sm text-gray-500 mt-1">Đơn hàng đã giao</p>
     </div>
 </section>
@@ -46,10 +46,12 @@
 </section>
 {% endif %}
 
-<!-- ===== FLASH SALE / HOT DEAL ===== -->
+<!-- ===== FLASH SALE / HOT DEAL — CAROUSEL ===== -->
 {% if hot_deals %}
 <section class="mb-10">
-    <div class="bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl p-5 md:p-6">
+    <div class="bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl p-5 md:p-6 relative"
+         x-data="flashSaleCarousel()" x-init="init()">
+
         <div class="flex items-center justify-between mb-4">
             <h2 class="text-xl font-bold text-white flex items-center gap-2">
                 <i class="bi bi-lightning-charge-fill"></i> Săn deal hời
@@ -58,11 +60,47 @@
                 Xem thêm <i class="bi bi-arrow-right"></i>
             </a>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+        <!-- Nút điều hướng trái -->
+        <button @click="scrollPrev()"
+                class="hidden md:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 bg-white rounded-full shadow-lg items-center justify-center hover:scale-110 transition">
+            <i class="bi bi-chevron-left text-gray-700"></i>
+        </button>
+
+        <!-- Track cuộn ngang (Đã nâng cấp kéo thả cho PC) -->
+        <div x-ref="track"
+             @mouseenter="pause()" 
+             @mouseleave="resume(); stopDrag()"
+             @touchstart="pause()" 
+             @touchend="resume()"
+             @mousedown="startDrag($event)" 
+             @mousemove="doDrag($event)" 
+             @mouseup="stopDrag()"
+             class="flex gap-4 overflow-x-auto pb-1"
+             :class="isDragging ? 'scroll-auto snap-none cursor-grabbing select-none' : 'scroll-smooth cursor-grab snap-x snap-mandatory'"
+             style="scrollbar-width: none; -ms-overflow-style: none;">
             {% for product in hot_deals %}
-                <div class="bg-white rounded-xl p-3">
-                    {% include 'products/includes/product_card.html' with product=product %}
+                <div class="bg-white rounded-xl p-3 shrink-0 snap-start w-[75%] sm:w-[45%] md:w-[23%] pointer-events-none" :class="isDragging ? 'pointer-events-none' : ''">
+                    <!-- Bọc class pointer-events để khi đang kéo thả sẽ không bị lỡ click nhầm vào link -->
+                    <div :class="isDragging ? 'pointer-events-none' : 'pointer-events-auto'">
+                        {% include 'products/includes/product_card.html' with product=product %}
+                    </div>
                 </div>
+            {% endfor %}
+        </div>
+
+        <!-- Nút điều hướng phải -->
+        <button @click="scrollNext()"
+                class="hidden md:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 bg-white rounded-full shadow-lg items-center justify-center hover:scale-110 transition">
+            <i class="bi bi-chevron-right text-gray-700"></i>
+        </button>
+
+        <!-- Dot indicator -->
+        <div class="flex justify-center gap-1.5 mt-4">
+            {% for product in hot_deals %}
+                <span class="w-1.5 h-1.5 rounded-full bg-white/50"
+                      :class="currentIndex === {{ forloop.counter0 }} ? 'bg-white w-4' : ''"
+                      class="transition-all"></span>
             {% endfor %}
         </div>
     </div>
@@ -165,4 +203,94 @@
     </a>
 </section>
 
+{% endblock %}
+{% block extra_js %}
+<script>
+    function flashSaleCarousel() {
+        return {
+            currentIndex: 0,
+            timer: null,
+            isDragging: false,
+            startX: 0,
+            scrollLeftPos: 0,
+
+            init() {
+                this.$nextTick(() => {
+                    this.startAutoScroll();
+                });
+
+                this.$refs.track.addEventListener('scroll', () => {
+                    if (this.isDragging) return; // Đang dùng chuột kéo thì không tính toán dot
+                    const track = this.$refs.track;
+                    if (!track.firstElementChild) return;
+                    
+                    const itemWidth = track.firstElementChild.clientWidth + 16;
+                    this.currentIndex = Math.round(track.scrollLeft / itemWidth);
+                });
+            },
+
+            // --- CÁC HÀM XỬ LÝ KÉO THẢ CHUỘT TRÊN PC ---
+            startDrag(e) {
+                this.isDragging = true;
+                this.pause();
+                this.startX = e.pageX - this.$refs.track.offsetLeft;
+                this.scrollLeftPos = this.$refs.track.scrollLeft;
+            },
+            
+            stopDrag() {
+                this.isDragging = false;
+                this.resume();
+            },
+            
+            doDrag(e) {
+                if (!this.isDragging) return;
+                e.preventDefault(); // Ngăn bôi đen text khi kéo
+                const x = e.pageX - this.$refs.track.offsetLeft;
+                const walk = (x - this.startX) * 1.5; // Nhân 1.5 để kéo nhanh hơn
+                this.$refs.track.scrollLeft = this.scrollLeftPos - walk;
+            },
+            // ------------------------------------------
+
+            scrollByAmount(direction) {
+                const track = this.$refs.track;
+                if (!track.firstElementChild) return;
+                
+                const itemWidth = track.firstElementChild.clientWidth + 16;
+                track.scrollBy({ left: direction * itemWidth, behavior: 'smooth' });
+            },
+
+            scrollNext() {
+                const track = this.$refs.track;
+                if (track.scrollWidth <= track.clientWidth) return;
+
+                const atEnd = Math.ceil(track.scrollLeft + track.clientWidth) >= track.scrollWidth - 10;
+                
+                if (atEnd) {
+                    track.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    this.scrollByAmount(1);
+                }
+            },
+
+            scrollPrev() {
+                this.scrollByAmount(-1);
+            },
+
+            startAutoScroll() {
+                this.pause();
+                this.timer = setInterval(() => {
+                    this.scrollNext();
+                }, 3000);
+            },
+
+            pause() {
+                if (this.timer) clearInterval(this.timer);
+            },
+
+            resume() {
+                this.startAutoScroll();
+            },
+        }
+    }
+</script>
 {% endblock %}

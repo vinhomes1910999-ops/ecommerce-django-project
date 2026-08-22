@@ -35,3 +35,7 @@ body.theme-default, .content-wrapper {
 .field-status_badge span:hover, .field-stock_badge span:hover {
     transform: scale(1.05);
 }
+/* Ẩn hoàn toàn góc phải của chân trang (chứa chữ Jazzmin version) */
+footer.main-footer .float-right {
+    display: none !important;
+}

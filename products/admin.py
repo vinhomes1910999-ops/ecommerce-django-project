@@ -1,8 +1,36 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Category, Product, ProductImage, Promotion, Review, Comment
+from .models import Category, Product, ProductImage, Promotion, Review, Comment, Color, Size
 from django.contrib.humanize.templatetags.humanize import intcomma
+from django.db import models
+from django.forms import CheckboxSelectMultiple, TextInput
 
+# ===================== COLOR & SIZE =====================
+@admin.register(Color)
+class ColorAdmin(admin.ModelAdmin):
+    list_display = ('name', 'hex_code', 'color_preview')
+    search_fields = ('name',)
+
+    # Ép ô nhập "Mã màu" thành Bảng chọn màu (Color Picker)
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        if db_field.name == 'hex_code':
+            kwargs['widget'] = TextInput(attrs={
+                'type': 'color', 
+                'style': 'height: 40px; width: 80px; cursor: pointer; padding: 0; border: none; background: none;'
+            })
+        return super().formfield_for_dbfield(db_field, **kwargs)
+
+    def color_preview(self, obj):
+        return format_html(
+            '<div style="width: 25px; height: 25px; background-color: {}; border: 1px solid #ccc; border-radius: 50%;"></div>',
+            obj.hex_code
+        )
+    color_preview.short_description = "Hiển thị"
+
+@admin.register(Size)
+class SizeAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
 
 # ===================== INLINE: Ảnh sản phẩm =====================
 class ProductImageInline(admin.TabularInline):
@@ -30,7 +58,6 @@ class ReviewInline(admin.TabularInline):
     can_delete = True
 
     def has_add_permission(self, request, obj=None):
-        # Review phải do khách hàng tạo qua site, admin chỉ xem/xóa, không tự thêm
         return False
 
 
@@ -60,17 +87,26 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('category', 'is_active', 'created_at')
     search_fields = ('name', 'description', 'slug')
     list_per_page = 25
-    list_editable = ('is_active',)          # sửa nhanh trạng thái ngay trên bảng list
+    list_editable = ('is_active',)
     ordering = ('-created_at',)
 
     # ---------- FORM (ADD/CHANGE VIEW) ----------
     prepopulated_fields = {'slug': ('name',)}
-    autocomplete_fields = ('category',)      # dropdown tìm kiếm thay vì <select> dài
+    autocomplete_fields = ('category',)
     inlines = [ProductImageInline, ReviewInline]
+    
+    # GIAO DIỆN CHỌN MÀU/SIZE THÀNH CÁC Ô TÍCH (CHECKBOX)
+    formfield_overrides = {
+        models.ManyToManyField: {'widget': CheckboxSelectMultiple},
+    }
 
     fieldsets = (
         ('Thông tin cơ bản', {
             'fields': ('name', 'slug', 'category', 'description'),
+        }),
+        ('Phân loại & Thuộc tính', {
+            'fields': ('colors', 'sizes'),
+            'description': 'Tích chọn các màu sắc và kích thước có sẵn cho sản phẩm này.',
         }),
         ('Giá & Tồn kho', {
             'fields': (('price', 'sale_price'), ('stock', 'sold_count')),
@@ -78,7 +114,7 @@ class ProductAdmin(admin.ModelAdmin):
         }),
         ('Trạng thái', {
             'fields': ('is_active',),
-            'classes': ('collapse',),        # gập lại mặc định, đỡ rối mắt
+            'classes': ('collapse',),
         }),
     )
 
@@ -117,7 +153,7 @@ class ProductAdmin(admin.ModelAdmin):
     stock_badge.short_description = "Tồn kho"
 
 
-# ===================== PROMOTION / REVIEW / COMMENT (bổ sung nhanh) =====================
+# ===================== PROMOTION / REVIEW / COMMENT =====================
 @admin.register(Promotion)
 class PromotionAdmin(admin.ModelAdmin):
     list_display = ('product', 'discount_type', 'discount_value', 'start_date', 'end_date', 'is_active')

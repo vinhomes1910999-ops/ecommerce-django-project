@@ -1,9 +1,7 @@
 from django.shortcuts import render
-
-# Create your views here.
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 
 from products.models import Product
 from .models import Cart, CartItem
@@ -19,6 +17,10 @@ def cart_detail_view(request):
 def add_to_cart_view(request, product_id):
     product = get_object_or_404(Product, id=product_id, is_active=True)
     quantity = int(request.POST.get('quantity', 1))
+    
+    # --- BẮT LẤY THÔNG TIN MÀU VÀ SIZE TỪ FORM HTML ---
+    color = request.POST.get('color', '')
+    size = request.POST.get('size', '')
 
     if quantity < 1:
         quantity = 1
@@ -28,8 +30,13 @@ def add_to_cart_view(request, product_id):
         return redirect('products:product_detail', slug=product.slug)
 
     cart, _ = Cart.objects.get_or_create(user=request.user)
+    
+    # --- ĐƯA MÀU VÀ SIZE VÀO ĐỂ PHÂN BIỆT SẢN PHẨM TRONG GIỎ ---
     cart_item, created = CartItem.objects.get_or_create(
-        cart=cart, product=product,
+        cart=cart, 
+        product=product,
+        color=color, # Thêm dòng này
+        size=size,   # Thêm dòng này
         defaults={'quantity': quantity}
     )
 
@@ -41,7 +48,17 @@ def add_to_cart_view(request, product_id):
         cart_item.quantity = new_quantity
         cart_item.save()
 
-    messages.success(request, f'Đã thêm "{product.name}" vào giỏ hàng.')
+    # Làm cho câu thông báo xịn xò hơn
+    variant_info = []
+    if color: variant_info.append(color)
+    if size: variant_info.append(size)
+    
+    if variant_info:
+        msg = f'Đã thêm "{product.name}" ({", ".join(variant_info)}) vào giỏ hàng.'
+    else:
+        msg = f'Đã thêm "{product.name}" vào giỏ hàng.'
+
+    messages.success(request, msg)
     return redirect('cart:cart_detail')
 
 

@@ -25,4 +25,7 @@
 }
 [x-cloak] {
     display: none !important;
+    [x-ref="track"]::-webkit-scrollbar {
+    display: none;
+}
 }

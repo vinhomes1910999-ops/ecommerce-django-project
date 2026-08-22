@@ -8,8 +8,9 @@ from .models import Order, OrderItem, Payment
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     extra = 0
-    fields = ('product', 'product_name', 'price', 'quantity', 'subtotal_display')
-    readonly_fields = ('product_name', 'price', 'subtotal_display')  # snapshot — không cho sửa
+    # Đã thêm 'color' và 'size' vào đây để Admin nhìn thấy phân loại của khách
+    fields = ('product', 'product_name', 'color', 'size', 'price', 'quantity', 'subtotal_display')
+    readonly_fields = ('product_name', 'color', 'size', 'price', 'subtotal_display')  # snapshot — không cho sửa
     autocomplete_fields = ('product',)
 
     def subtotal_display(self, obj):
@@ -47,7 +48,7 @@ class OrderAdmin(admin.ModelAdmin):
     )
     list_filter = ('status', 'created_at')
     search_fields = ('order_code', 'user__username', 'user__email', 'shipping_phone')
-    date_hierarchy = 'created_at'          # thanh điều hướng Năm > Tháng > Ngày
+    date_hierarchy = 'created_at'           # thanh điều hướng Năm > Tháng > Ngày
     list_per_page = 25
     ordering = ('-created_at',)
     autocomplete_fields = ('user',)

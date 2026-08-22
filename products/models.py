@@ -1,6 +1,3 @@
-from django.db import models
-
-# Create your models here.
 from django.conf import settings
 from django.db import models
 from django.utils.text import slugify
@@ -25,6 +22,22 @@ class Category(models.Model):
         return self.name
 
 
+# ============ ĐƯA BẢNG COLOR VÀ SIZE LÊN ĐÂY ============
+class Color(models.Model):
+    name = models.CharField("Tên màu", max_length=50)
+    hex_code = models.CharField("Mã màu (Hex)", max_length=7, default="#000000", help_text="VD: #FF0000 cho màu đỏ, #ffffff cho màu trắng")
+
+    def __str__(self):
+        return self.name
+
+class Size(models.Model):
+    name = models.CharField("Kích thước", max_length=20, help_text="VD: S, M, L, XL, 39, 40...")
+
+    def __str__(self):
+        return self.name
+# ========================================================
+
+
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='products')
     name = models.CharField(max_length=200)
@@ -37,6 +50,11 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    # ===== THÊM 2 DÒNG NÀY ĐỂ SẢN PHẨM NHẬN DIỆN MÀU VÀ SIZE =====
+    colors = models.ManyToManyField(Color, blank=True, verbose_name="Màu sắc")
+    sizes = models.ManyToManyField(Size, blank=True, verbose_name="Kích thước")
+    # ==============================================================
 
     def save(self, *args, **kwargs):
         if not self.slug:

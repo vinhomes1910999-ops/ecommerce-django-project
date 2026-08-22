@@ -20,7 +20,21 @@
                 <div class="flex justify-between items-center py-3 text-sm">
                     <div>
                         <p class="font-medium text-gray-800">{{ item.product_name }}</p>
-                        <p class="text-gray-500">{{ item.price|floatformat:0 }}₫ x {{ item.quantity }}</p>
+                        
+                        <!-- ===== HIỂN THỊ MÀU SẮC & KÍCH THƯỚC CHO KHÁCH ===== -->
+                        {% if item.color or item.size %}
+                        <p class="text-xs text-gray-500 mt-0.5">
+                            Phân loại: 
+                            <span class="font-semibold text-gray-700">
+                                {% if item.color %}{{ item.color }}{% endif %}
+                                {% if item.color and item.size %} / {% endif %}
+                                {% if item.size %}Size {{ item.size }}{% endif %}
+                            </span>
+                        </p>
+                        {% endif %}
+                        <!-- ================================================ -->
+
+                        <p class="text-gray-500 mt-1">{{ item.price|floatformat:0 }}₫ x {{ item.quantity }}</p>
                     </div>
                     <span class="font-semibold text-gray-900">{{ item.subtotal|floatformat:0 }}₫</span>
                 </div>

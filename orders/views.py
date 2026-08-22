@@ -1,6 +1,4 @@
 from django.shortcuts import render
-
-# Create your views here.
 import uuid
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -53,6 +51,10 @@ def checkout_view(request):
                     product_name=item.product.name,
                     price=item.product.current_price,
                     quantity=item.quantity,
+                    # ===== CHÉP MÀU SẮC VÀ KÍCH THƯỚC TỪ GIỎ HÀNG SANG HÓA ĐƠN =====
+                    color=item.color,
+                    size=item.size,
+                    # =============================================================
                 )
                 # Trừ tồn kho + cộng số lượng đã bán
                 item.product.stock -= item.quantity

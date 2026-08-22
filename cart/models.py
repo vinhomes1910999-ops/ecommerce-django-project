@@ -1,10 +1,6 @@
 from django.db import models
-
-# Create your models here.
 from django.conf import settings
-from django.db import models
 from products.models import Product
-
 
 class Cart(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cart')
@@ -26,14 +22,25 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+    
+    # ===== THÊM 2 CỘT NÀY ĐỂ LƯU MÀU VÀ SIZE =====
+    color = models.CharField("Màu sắc", max_length=50, blank=True, null=True)
+    size = models.CharField("Kích thước", max_length=50, blank=True, null=True)
+    
     added_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('cart', 'product')
+        # QUAN TRỌNG: Cập nhật bộ lọc để phân biệt được "Áo đỏ size L" và "Áo đen size M"
+        unique_together = ('cart', 'product', 'color', 'size')
 
     @property
     def subtotal(self):
         return self.product.current_price * self.quantity
 
     def __str__(self):
-        return f"{self.quantity} x {self.product.name}"
+        # Nâng cấp hiển thị tên trong Admin cho dễ nhìn
+        variant = []
+        if self.color: variant.append(self.color)
+        if self.size: variant.append(self.size)
+        variant_str = f" ({', '.join(variant)})" if variant else ""
+        return f"{self.quantity} x {self.product.name}{variant_str}"

@@ -81,20 +81,57 @@
         <!-- ===== FORM THÊM VÀO GIỎ ===== -->
         {% if user.is_authenticated %}
             {% if product.stock > 0 %}
-            <form method="post" action="{% url 'cart:add_to_cart' product.id %}"
-                  class="flex items-center gap-4 mb-6" x-data="{ qty: 1 }">
+            <form method="post" action="{% url 'cart:add_to_cart' product.id %}" class="mb-6" x-data="{ qty: 1 }">
                 {% csrf_token %}
-                <div class="flex items-center border border-gray-300 rounded-lg">
-                    <button type="button" @click="qty > 1 && qty--"
-                            class="w-10 h-10 flex items-center justify-center hover:bg-gray-100">−</button>
-                    <input type="number" name="quantity" x-model="qty" min="1" max="{{ product.stock }}"
-                           class="w-14 text-center border-0 focus:ring-0">
-                    <button type="button" @click="qty < {{ product.stock }} && qty++"
-                            class="w-10 h-10 flex items-center justify-center hover:bg-gray-100">+</button>
+
+                <!-- CHỌN MÀU SẮC -->
+                {% if product.colors.all %}
+                <div class="mb-5">
+                    <h3 class="text-sm font-medium text-gray-900 mb-2">Màu sắc</h3>
+                    <div class="flex items-center gap-3">
+                        {% for color in product.colors.all %}
+                        <label class="cursor-pointer relative">
+                            <input type="radio" name="color" value="{{ color.name }}" class="peer sr-only" required>
+                            <div class="w-8 h-8 rounded-full border border-gray-300 peer-checked:ring-2 peer-checked:ring-brand peer-checked:ring-offset-2 transition shadow-sm" 
+                                 style="background-color: {{ color.hex_code }};" title="{{ color.name }}">
+                            </div>
+                        </label>
+                        {% endfor %}
+                    </div>
                 </div>
-                <button type="submit" class="btn-primary flex-1 flex items-center justify-center gap-2">
-                    <i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng
-                </button>
+                {% endif %}
+
+                <!-- CHỌN KÍCH THƯỚC -->
+                {% if product.sizes.all %}
+                <div class="mb-6">
+                    <h3 class="text-sm font-medium text-gray-900 mb-2">Kích thước</h3>
+                    <div class="flex flex-wrap items-center gap-3">
+                        {% for size in product.sizes.all %}
+                        <label class="cursor-pointer">
+                            <input type="radio" name="size" value="{{ size.name }}" class="peer sr-only" required>
+                            <div class="min-w-[3.5rem] h-10 px-3 flex items-center justify-center rounded-lg border border-gray-200 text-sm font-medium peer-checked:border-brand peer-checked:bg-brand/5 peer-checked:text-brand hover:bg-gray-50 transition">
+                                {{ size.name }}
+                            </div>
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- CHỌN SỐ LƯỢNG & NÚT MUA -->
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center border border-gray-300 rounded-lg">
+                        <button type="button" @click="qty > 1 && qty--"
+                                class="w-10 h-10 flex items-center justify-center hover:bg-gray-100">−</button>
+                        <input type="number" name="quantity" x-model="qty" min="1" max="{{ product.stock }}"
+                               class="w-14 text-center border-0 focus:ring-0">
+                        <button type="button" @click="qty < {{ product.stock }} && qty++"
+                                class="w-10 h-10 flex items-center justify-center hover:bg-gray-100">+</button>
+                    </div>
+                    <button type="submit" class="btn-primary flex-1 flex items-center justify-center gap-2 py-2.5">
+                        <i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng
+                    </button>
+                </div>
             </form>
             {% endif %}
         {% else %}

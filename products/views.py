@@ -8,6 +8,9 @@ from django.db.models import Q
 from django.http import JsonResponse
 from django.urls import reverse
 from django.db.models import Sum, Avg, Q
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 
 
 def home_view(request):
@@ -15,10 +18,10 @@ def home_view(request):
     featured_products = Product.objects.filter(is_active=True).order_by('-sold_count')[:8]
     categories = Category.objects.filter(parent__isnull=True)
 
-    # Sản phẩm đang giảm giá, sắp theo % giảm nhiều nhất
+    # ĐÃ MỞ KHÓA TẠI ĐÂY 👇: Sửa [:4] thành [:12] để hiển thị tối đa 12 sản phẩm Flash Sale
     hot_deals = Product.objects.filter(
         is_active=True, sale_price__isnull=False
-    ).order_by('-created_at')[:4]
+    ).order_by('-created_at')[:12]
 
     # Đánh giá 5 sao có nội dung, mới nhất — dùng làm "testimonial"
     testimonials = Review.objects.filter(
@@ -115,10 +118,6 @@ def product_detail_view(request, slug):
     }
     return render(request, 'products/product_detail.html', context)
 
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
-
 
 @login_required
 def add_review_view(request, slug):
@@ -157,7 +156,6 @@ def add_comment_view(request, slug):
             messages.success(request, 'Đã đăng bình luận.')
 
     return redirect('products:product_detail', slug=slug)
-
 
 
 # Từ khóa liên quan theo tháng — chỉnh sửa tùy theo mặt hàng thực tế của bạn

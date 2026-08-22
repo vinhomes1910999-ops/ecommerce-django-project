@@ -1,8 +1,5 @@
 from django.db import models
-
-# Create your models here.
 from django.conf import settings
-from django.db import models
 from products.models import Product
 
 
@@ -38,12 +35,22 @@ class OrderItem(models.Model):
     price = models.DecimalField(max_digits=12, decimal_places=2)  # snapshot
     quantity = models.PositiveIntegerField()
 
+    # ===== THÊM 2 CỘT MÀU VÀ SIZE (snapshot) =====
+    color = models.CharField("Màu sắc", max_length=50, blank=True, null=True)
+    size = models.CharField("Kích thước", max_length=50, blank=True, null=True)
+    # =============================================
+
     @property
     def subtotal(self):
         return self.price * self.quantity
 
     def __str__(self):
-        return f"{self.quantity} x {self.product_name}"
+        # Hiển thị luôn màu/size ra Admin cho dễ gói hàng
+        variant = []
+        if self.color: variant.append(self.color)
+        if self.size: variant.append(self.size)
+        variant_str = f" ({', '.join(variant)})" if variant else ""
+        return f"{self.quantity} x {self.product_name}{variant_str}"
 
 
 class Payment(models.Model):

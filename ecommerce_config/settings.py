@@ -68,6 +68,8 @@ JAZZMIN_SETTINGS = {
         "products.Product": "fas fa-box",
         "products.Promotion": "fas fa-bullhorn",
         "products.Review": "fas fa-star",
+        "custom_css": "css/admin_float.css",
+    "custom_js": "js/admin_float.js",
     },
 
     "order_with_respect_to": [

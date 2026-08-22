@@ -25,7 +25,7 @@
                 <!-- 2. SEARCH BAR (Desktop) -->
                 <div class="relative hidden md:block flex-1 max-w-md mx-6" x-data="searchSuggest()" @click.outside="open = false">
                     
-                    <!-- Form Tìm Kiếm (Đã ẩn kính lúp, nhấn Enter để tìm) -->
+                    <!-- Form Tìm Kiếm -->
                     <form method="get" action="{% url 'products:product_list' %}" class="w-full">
                         <div class="relative w-full">
                             <input type="search" name="q" x-model="query" autocomplete="off"
@@ -280,6 +280,8 @@
             }
         });
     </script>
+    
+    <!-- LỖ CHỜ CHO CÁC TRANG KHÁC DÁN JS VÀO ĐÂY -->
     {% block extra_js %}{% endblock %}
 </body>
 </html>
