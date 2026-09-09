@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block content %}
+
+<!-- ===== BREADCRUMB ===== -->
+<nav class="text-sm text-gray-500 mb-5">
+    <a href="{% url 'products:home' %}" class="hover:text-brand">Trang chủ</a>
+    <span class="mx-1">/</span>
+    <a href="{% url 'products:product_list' %}?category={{ product.category.id }}" class="hover:text-brand">{{ product.category.name }}</a>
+    <span class="mx-1">/</span>
+    <span class="text-gray-700">{{ product.name }}</span>
+</nav>
+
+<div class="grid md:grid-cols-2 gap-10 mb-14">
+
+    <!-- ===== GALLERY ẢNH ===== -->
+    <div x-data="{ mainImage: '{% if product.images.first %}{{ product.images.first.image.url }}{% endif %}' }">
+        <div class="aspect-square bg-gray-100 rounded-2xl overflow-hidden mb-3 flex items-center justify-center">
+            {% if product.images.exists %}
+                <img :src="mainImage" alt="{{ product.name }}" class="w-full h-full object-cover">
+            {% else %}
+                <i class="bi bi-image text-6xl text-gray-300"></i>
+            {% endif %}
+        </div>
+
+        {% if product.images.count > 1 %}
+        <div class="grid grid-cols-5 gap-2">
+            {% for image in product.images.all %}
+            <button @click="mainImage = '{{ image.image.url }}'"
+                    class="aspect-square rounded-lg overflow-hidden border-2 border-transparent hover:border-brand transition">
+                <img src="{{ image.image.url }}" class="w-full h-full object-cover">
+            </button>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- ===== THÔNG TIN SẢN PHẨM ===== -->
+    <div>
+        <h1 class="text-2xl font-bold text-gray-900 mb-2">{{ product.name }}</h1>
+
+        <div class="flex items-center gap-2 mb-4 text-sm">
+            <div class="flex items-center gap-0.5 text-yellow-500">
+                {% for i in "12345" %}
+                    {% if forloop.counter <= product.average_rating %}
+                        <i class="bi bi-star-fill"></i>
+                    {% else %}
+                        <i class="bi bi-star"></i>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <span class="text-gray-500">{{ product.average_rating }} ({{ reviews.count }} đánh giá)</span>
+            <span class="text-gray-300">|</span>
+            <span class="text-gray-500">Đã bán {{ product.sold_count }}</span>
+        </div>
+
+        <div class="mb-5">
+            {% if product.sale_price %}
+                <div class="flex items-center gap-3 flex-wrap">
+                    <span class="text-3xl font-bold text-red-600">{{ product.sale_price|floatformat:0 }}₫</span>
+                    <span class="text-lg line-through text-gray-400">{{ product.price|floatformat:0 }}₫</span>
+                    <span class="bg-red-100 text-red-600 text-sm font-semibold px-2 py-1 rounded">
+                        -{{ product.discount_percent }}%
+                    </span>
+                </div>
+            {% else %}
+                <span class="text-3xl font-bold text-gray-900">{{ product.price|floatformat:0 }}₫</span>
+            {% endif %}
+        </div>
+
+        <div class="flex items-center gap-2 mb-6 text-sm">
+            {% if product.stock > 0 %}
+                <i class="bi bi-check-circle-fill text-green-500"></i>
+                <span class="text-green-600">Còn hàng ({{ product.stock }} sản phẩm)</span>
+            {% else %}
+                <i class="bi bi-x-circle-fill text-red-500"></i>
+                <span class="text-red-600">Hết hàng</span>
+            {% endif %}
+        </div>
+
+        <!-- ===== FORM THÊM VÀO GIỎ ===== -->
+        {% if user.is_authenticated %}
+            {% if product.stock > 0 %}
+            <form method="post" action="{% url 'cart:add_to_cart' product.id %}" class="mb-6" x-data="{ qty: 1 }">
+                {% csrf_token %}
+
+                <!-- CHỌN MÀU SẮC -->
+                {% if product.colors.all %}
+                <div class="mb-5">
+                    <h3 class="text-sm font-medium text-gray-900 mb-2">Màu sắc</h3>
+                    <div class="flex items-center gap-3">
+                        {% for color in product.colors.all %}
+                        <label class="cursor-pointer relative">
+                            <input type="radio" name="color" value="{{ color.name }}" class="peer sr-only" required>
+                            <div class="w-8 h-8 rounded-full border border-gray-300 peer-checked:ring-2 peer-checked:ring-brand peer-checked:ring-offset-2 transition shadow-sm" 
+                                 style="background-color: {{ color.hex_code }};" title="{{ color.name }}">
+                            </div>
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- CHỌN KÍCH THƯỚC -->
+                {% if product.sizes.all %}
+                <div class="mb-6">
+                    <h3 class="text-sm font-medium text-gray-900 mb-2">Kích thước</h3>
+                    <div class="flex flex-wrap items-center gap-3">
+                        {% for size in product.sizes.all %}
+                        <label class="cursor-pointer">
+                            <input type="radio" name="size" value="{{ size.name }}" class="peer sr-only" required>
+                            <div class="min-w-[3.5rem] h-10 px-3 flex items-center justify-center rounded-lg border border-gray-200 text-sm font-medium peer-checked:border-brand peer-checked:bg-brand/5 peer-checked:text-brand hover:bg-gray-50 transition">
+                                {{ size.name }}
+                            </div>
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- CHỌN SỐ LƯỢNG & NÚT MUA -->
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center border border-gray-300 rounded-lg">
+                        <button type="button" @click="qty > 1 && qty--"
+                                class="w-10 h-10 flex items-center justify-center hover:bg-gray-100">−</button>
+                        <input type="number" name="quantity" x-model="qty" min="1" max="{{ product.stock }}"
+                               class="w-14 text-center border-0 focus:ring-0">
+                        <button type="button" @click="qty < {{ product.stock }} && qty++"
+                                class="w-10 h-10 flex items-center justify-center hover:bg-gray-100">+</button>
+                    </div>
+                    <button type="submit" class="btn-primary flex-1 flex items-center justify-center gap-2 py-2.5">
+                        <i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng
+                    </button>
+                </div>
+            </form>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'accounts:login' %}" class="btn-primary inline-block mb-6">
+                Đăng nhập để mua hàng
+            </a>
+        {% endif %}
+
+        <div class="border-t pt-5 text-sm text-gray-600 space-y-2">
+            <p><i class="bi bi-truck text-brand"></i> Miễn phí vận chuyển cho đơn từ 500.000đ</p>
+            <p><i class="bi bi-arrow-repeat text-brand"></i> Đổi trả trong 7 ngày</p>
+            <p><i class="bi bi-shield-check text-brand"></i> Bảo hành chính hãng</p>
+        </div>
+    </div>
+</div>
+
+<!-- ===== MÔ TẢ SẢN PHẨM ===== -->
+<section class="mb-14">
+    <h2 class="text-xl font-bold mb-4 border-l-4 border-brand pl-3">Mô tả sản phẩm</h2>
+    <div class="card text-gray-700 leading-relaxed">
+        {{ product.description|linebreaks|default:"Chưa có mô tả cho sản phẩm này." }}
+    </div>
+</section>
+
+<!-- ===== ĐÁNH GIÁ & BÌNH LUẬN (dạng tab) ===== -->
+<section class="mb-14" x-data="{ tab: 'reviews' }">
+    <div class="flex gap-6 border-b mb-6">
+        <button @click="tab = 'reviews'"
+                :class="tab === 'reviews' ? 'border-brand text-brand' : 'border-transparent text-gray-500'"
+                class="pb-3 border-b-2 font-medium transition">
+            Đánh giá ({{ reviews.count }})
+        </button>
+        <button @click="tab = 'comments'"
+                :class="tab === 'comments' ? 'border-brand text-brand' : 'border-transparent text-gray-500'"
+                class="pb-3 border-b-2 font-medium transition">
+            Bình luận ({{ comments.count }})
+        </button>
+    </div>
+
+    <!-- ===== TAB ĐÁNH GIÁ ===== -->
+    <div x-show="tab === 'reviews'">
+        {% if user.is_authenticated %}
+        <form method="post" action="{% url 'products:add_review' product.slug %}" class="card mb-6">
+            {% csrf_token %}
+            <label class="block text-sm font-medium mb-2">Đánh giá của bạn</label>
+            <select name="rating" required class="rounded-lg border-gray-300 text-sm mb-3 focus:ring-brand focus:border-brand">
+                <option value="5">5 sao - Tuyệt vời</option>
+                <option value="4">4 sao - Tốt</option>
+                <option value="3">3 sao - Bình thường</option>
+                <option value="2">2 sao - Không hài lòng</option>
+                <option value="1">1 sao - Rất tệ</option>
+            </select>
+            <textarea name="content" rows="3" placeholder="Chia sẻ cảm nhận của bạn về sản phẩm..."
+                      class="w-full rounded-lg border-gray-300 text-sm mb-3 focus:ring-brand focus:border-brand"></textarea>
+            <button type="submit" class="btn-primary">Gửi đánh giá</button>
+        </form>
+        {% else %}
+        <p class="text-gray-500 mb-6">
+            <a href="{% url 'accounts:login' %}" class="text-brand hover:underline">Đăng nhập</a> để đánh giá sản phẩm.
+        </p>
+        {% endif %}
+
+        <div class="space-y-4">
+            {% for review in reviews %}
+            <div class="card">
+                <div class="flex items-center justify-between mb-1">
+                    <span class="font-medium text-gray-900">{{ review.user.username }}</span>
+                    <span class="text-xs text-gray-400">{{ review.created_at|date:"d/m/Y" }}</span>
+                </div>
+                <div class="flex text-yellow-500 text-sm mb-2">
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= review.rating %}
+                            <i class="bi bi-star-fill"></i>
+                        {% else %}
+                            <i class="bi bi-star"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <p class="text-gray-600 text-sm">{{ review.content }}</p>
+            </div>
+            {% empty %}
+            <p class="text-gray-400 text-center py-8">Chưa có đánh giá nào cho sản phẩm này.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- ===== TAB BÌNH LUẬN ===== -->
+    <div x-show="tab === 'comments'" x-cloak>
+        {% if user.is_authenticated %}
+        <form method="post" action="{% url 'products:add_comment' product.slug %}" class="card mb-6">
+            {% csrf_token %}
+            <textarea name="content" rows="3" placeholder="Viết bình luận của bạn..." required
+                      class="w-full rounded-lg border-gray-300 text-sm mb-3 focus:ring-brand focus:border-brand"></textarea>
+            <button type="submit" class="btn-primary">Gửi bình luận</button>
+        </form>
+        {% else %}
+        <p class="text-gray-500 mb-6">
+            <a href="{% url 'accounts:login' %}" class="text-brand hover:underline">Đăng nhập</a> để bình luận.
+        </p>
+        {% endif %}
+
+        <div class="space-y-4">
+            {% for comment in comments %}
+            <div class="card">
+                <div class="flex items-center justify-between mb-1">
+                    <span class="font-medium text-gray-900">{{ comment.user.username }}</span>
+                    <span class="text-xs text-gray-400">{{ comment.created_at|date:"d/m/Y H:i" }}</span>
+                </div>
+                <p class="text-gray-600 text-sm mb-2">{{ comment.content }}</p>
+
+                {% for reply in comment.replies.all %}
+                <div class="ml-6 mt-2 pl-4 border-l-2 border-gray-200">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="font-medium text-gray-900 text-sm">{{ reply.user.username }}</span>
+                        <span class="text-xs text-gray-400">{{ reply.created_at|date:"d/m/Y H:i" }}</span>
+                    </div>
+                    <p class="text-gray-600 text-sm">{{ reply.content }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% empty %}
+            <p class="text-gray-400 text-center py-8">Chưa có bình luận nào.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ===== SẢN PHẨM LIÊN QUAN ===== -->
+{% if related_products %}
+<section>
+    <h2 class="text-xl font-bold mb-4 border-l-4 border-brand pl-3">Sản phẩm liên quan</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+        {% for rp in related_products %}
+            {% include 'products/includes/product_card.html' with product=rp %}
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}

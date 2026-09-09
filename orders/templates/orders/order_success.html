@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Đặt hàng thành công{% endblock %}
+{% block content %}
+
+<div class="max-w-lg mx-auto text-center py-16">
+    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+        <i class="bi bi-check-lg text-4xl text-green-600"></i>
+    </div>
+    <h1 class="text-2xl font-bold mb-2">Đặt hàng thành công!</h1>
+    <p class="text-gray-500 mb-6">Cảm ơn bạn đã mua sắm tại My Shop. Chúng tôi sẽ liên hệ để xác nhận đơn hàng sớm nhất.</p>
+
+    <div class="card text-left mb-6">
+        <div class="flex justify-between text-sm mb-2">
+            <span class="text-gray-500">Mã đơn hàng</span>
+            <span class="font-semibold text-brand">{{ order.order_code }}</span>
+        </div>
+        <div class="flex justify-between text-sm mb-2">
+            <span class="text-gray-500">Trạng thái</span>
+            <span class="font-medium">{{ order.get_status_display }}</span>
+        </div>
+        <div class="flex justify-between text-sm">
+            <span class="text-gray-500">Tổng tiền</span>
+            <span class="font-semibold text-red-600">{{ order.total_amount|floatformat:0 }}₫</span>
+        </div>
+    </div>
+
+    <div class="flex gap-3 justify-center">
+        <a href="{% url 'orders:order_history' %}" class="btn-outline">Xem đơn hàng</a>
+        <a href="{% url 'products:product_list' %}" class="btn-primary">Tiếp tục mua sắm</a>
+    </div>
+</div>
+
+{% endblock %}

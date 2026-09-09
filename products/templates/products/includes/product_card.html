@@ -1,0 +1,42 @@
+<div class="card product-card flex flex-col">
+    <a href="{% url 'products:product_detail' product.slug %}" class="block mb-3">
+        <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+            {% if product.images.first %}
+                <img src="{{ product.images.first.image.url }}" alt="{{ product.name }}"
+                     class="w-full h-full object-cover">
+            {% else %}
+                <i class="bi bi-image text-4xl text-gray-300"></i>
+            {% endif %}
+        </div>
+    </a>
+
+    <a href="{% url 'products:product_detail' product.slug %}"
+       class="font-medium text-gray-800 hover:text-brand line-clamp-2 mb-2 text-sm md:text-base">
+        {{ product.name }}
+    </a>
+
+    <div class="mt-auto">
+        {% if product.sale_price %}
+            <div class="flex items-center gap-2 flex-wrap">
+                <span class="price-sale">{{ product.sale_price|floatformat:0 }}₫</span>
+                <span class="price-old">{{ product.price|floatformat:0 }}₫</span>
+            </div>
+            <span class="inline-block bg-red-100 text-red-600 text-xs font-semibold px-2 py-0.5 rounded mt-1">
+                -{{ product.discount_percent }}%
+            </span>
+        {% else %}
+            <span class="price-normal">{{ product.price|floatformat:0 }}₫</span>
+        {% endif %}
+
+        <div class="flex items-center gap-1 text-yellow-500 text-xs mt-1">
+            {% for i in "12345" %}
+                {% if forloop.counter <= product.average_rating %}
+                    <i class="bi bi-star-fill"></i>
+                {% else %}
+                    <i class="bi bi-star"></i>
+                {% endif %}
+            {% endfor %}
+            <span class="text-gray-400 ml-1">({{ product.reviews.count }})</span>
+        </div>
+    </div>
+</div>

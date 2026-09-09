@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% block extra_css %}
+<style>
+    /* 1. Chỉ định dạng cho các khối đã được JS nhận diện là ô nhập chữ */
+    form p.floating-group {
+        position: relative;
+        margin-bottom: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    /* 2. Định dạng ô Input */
+    form input[type="text"], 
+    form input[type="password"], 
+    form input[type="email"], 
+    form input[type="number"] {
+        width: 100%;
+        padding: 0.875rem 1rem; /* Rộng rãi, thoáng mắt */
+        border: 1px solid #d1d5db;
+        border-radius: 0.5rem;
+        background-color: #ffffff;
+        outline: none;
+        transition: all 0.2s;
+        font-size: 1rem;
+        color: #111827;
+    }
+
+    /* Đổi màu viền khi click vào */
+    form input:focus {
+        border-color: #4f46e5;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    /* 3. Định dạng Label (Nhãn) mặc định - Nằm chìm bên trong ô input */
+    form p.floating-group label {
+        position: absolute;
+        top: 0.95rem; /* Canh giữa ô input */
+        left: 0.75rem;
+        font-size: 1rem;
+        color: #6b7280;
+        pointer-events: none; /* Tránh cản chuột khi click */
+        transition: all 0.2s ease-out;
+        background-color: #ffffff; /* Nền trắng đè lên viền */
+        padding: 0 0.3rem;
+        margin: 0;
+        line-height: 1;
+    }
+
+    /* 4. HIỆU ỨNG FLOATING: Nhãn nổi lên cắt ngang đường viền */
+    form p.float-active label {
+        top: -0.4rem;
+        font-size: 0.8rem;
+        color: #4f46e5;
+        font-weight: 600;
+    }
+
+    /* Giữ màu xám nếu ô đã có chữ nhưng chuột đang click ra ngoài */
+    form p.float-active.has-value:not(.is-focused) label {
+        color: #6b7280;
+    }
+
+    /* 5. Trang trí mấy dòng lưu ý và báo lỗi của Django */
+    form .helptext {
+        font-size: 0.75rem;
+        color: #6b7280;
+        display: block;
+        margin-top: 0.5rem;
+        line-height: 1.4;
+    }
+    form ul.errorlist {
+        color: #ef4444;
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+        padding-left: 0;
+        list-style: none;
+    }
+</style>
+{% endblock %}
+{% block title %}Đăng nhập{% endblock %}
+{% block content %}
+
+<div class="max-w-md mx-auto py-10">
+    <div class="card">
+        <div class="text-center mb-6">
+            <i class="bi bi-shop text-4xl text-brand"></i>
+            <h1 class="text-xl font-bold mt-2">Đăng nhập tài khoản</h1>
+            <p class="text-gray-500 text-sm">Chào mừng bạn quay lại My Shop</p>
+        </div>
+
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+            <div class="bg-red-50 text-red-600 text-sm p-3 rounded-lg">
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+
+            <div>
+                <label class="block text-sm font-medium mb-1">Tên đăng nhập</label>
+                <input type="text" name="username" required autofocus
+                       class="w-full rounded-lg border-gray-300 text-sm focus:ring-brand focus:border-brand">
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-1">Mật khẩu</label>
+                <input type="password" name="password" required
+                       class="w-full rounded-lg border-gray-300 text-sm focus:ring-brand focus:border-brand">
+            </div>
+
+            <button type="submit" class="btn-primary w-full">Đăng nhập</button>
+        </form>
+
+        <p class="text-center text-sm text-gray-500 mt-5">
+            Chưa có tài khoản?
+            <a href="{% url 'accounts:register' %}" class="text-brand font-medium hover:underline">Đăng ký ngay</a>
+        </p>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Lấy tất cả các ô nhập liệu cần làm hiệu ứng
+        const inputs = document.querySelectorAll('form input[type="text"], form input[type="password"], form input[type="email"], form input[type="number"]');
+        
+        inputs.forEach(input => {
+            // Tìm cái thẻ <p> bọc bên ngoài mà Django tạo ra
+            const parentP = input.closest('p');
+            if (!parentP) return;
+
+            // Đánh dấu thẻ <p> này để CSS biết mà áp dụng định dạng
+            parentP.classList.add('floating-group');
+
+            // Hàm kiểm tra xem ô nhập có chữ không để đẩy nhãn lên
+            const checkValue = () => {
+                if (input.value.trim() !== '') {
+                    parentP.classList.add('float-active', 'has-value');
+                } else {
+                    parentP.classList.remove('has-value');
+                    if (document.activeElement !== input) {
+                        parentP.classList.remove('float-active');
+                    }
+                }
+            };
+
+            // Chạy kiểm tra liền lúc load web (phòng khi trình duyệt tự điền mật khẩu cũ)
+            setTimeout(checkValue, 100);
+
+            // Khi người dùng click chuột vào ô nhập
+            input.addEventListener('focus', () => {
+                parentP.classList.add('float-active', 'is-focused');
+            });
+
+            // Khi người dùng click chuột ra chỗ khác
+            input.addEventListener('blur', () => {
+                parentP.classList.remove('is-focused');
+                checkValue();
+            });
+            
+            // Lắng nghe khi gõ phím
+            input.addEventListener('input', checkValue);
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block title %}Sản phẩm{% endblock %}
+{% block content %}
+
+<h1 class="text-2xl font-bold mb-6">Sản phẩm</h1>
+
+<div class="flex flex-col lg:flex-row gap-6">
+
+    <!-- ===== SIDEBAR FILTER ===== -->
+    <aside class="lg:w-64 shrink-0">
+        <form method="get" class="card space-y-4 sticky top-20">
+            <div>
+                <label class="block text-sm font-medium mb-1">Tìm kiếm</label>
+                <input type="text" name="q" value="{{ query }}" placeholder="Tên sản phẩm..."
+                       class="w-full rounded-lg border-gray-300 text-sm focus:ring-brand focus:border-brand">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium mb-1">Danh mục</label>
+                <select name="category" class="w-full rounded-lg border-gray-300 text-sm focus:ring-brand focus:border-brand">
+                    <option value="">Tất cả danh mục</option>
+                    {% for cat in categories %}
+                        <option value="{{ cat.id }}" {% if selected_category == cat.id|stringformat:"s" %}selected{% endif %}>
+                            {{ cat.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium mb-1">Khoảng giá</label>
+                <div class="flex items-center gap-2">
+                    <input type="number" name="min_price" value="{{ min_price }}" placeholder="Từ"
+                           class="w-full rounded-lg border-gray-300 text-sm focus:ring-brand focus:border-brand">
+                    <span class="text-gray-400">—</span>
+                    <input type="number" name="max_price" value="{{ max_price }}" placeholder="Đến"
+                           class="w-full rounded-lg border-gray-300 text-sm focus:ring-brand focus:border-brand">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium mb-1">Sắp xếp</label>
+                <select name="sort" class="w-full rounded-lg border-gray-300 text-sm focus:ring-brand focus:border-brand">
+                    <option value="newest" {% if sort == 'newest' %}selected{% endif %}>Mới nhất</option>
+                    <option value="price_asc" {% if sort == 'price_asc' %}selected{% endif %}>Giá tăng dần</option>
+                    <option value="price_desc" {% if sort == 'price_desc' %}selected{% endif %}>Giá giảm dần</option>
+                    <option value="best_selling" {% if sort == 'best_selling' %}selected{% endif %}>Bán chạy</option>
+                    <option value="name_asc" {% if sort == 'name_asc' %}selected{% endif %}>Tên A-Z</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-primary w-full">
+                <i class="bi bi-funnel"></i> Áp dụng
+            </button>
+            <a href="{% url 'products:product_list' %}" class="block text-center text-sm text-gray-500 hover:text-brand">
+                Xóa bộ lọc
+            </a>
+        </form>
+    </aside>
+
+    <!-- ===== DANH SÁCH SẢN PHẨM ===== -->
+    <div class="flex-1">
+        {% if page_obj %}
+            <p class="text-sm text-gray-500 mb-4">
+                Tìm thấy {{ page_obj.paginator.count }} sản phẩm
+                {% if query %} cho "<strong>{{ query }}</strong>"{% endif %}
+            </p>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5">
+                {% for product in page_obj %}
+                    {% include 'products/includes/product_card.html' with product=product %}
+                {% endfor %}
+            </div>
+
+            <!-- ===== PHÂN TRANG ===== -->
+            {% if page_obj.paginator.num_pages > 1 %}
+            <div class="flex items-center justify-center gap-2 mt-10">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}&q={{ query }}&category={{ selected_category }}&min_price={{ min_price }}&max_price={{ max_price }}&sort={{ sort }}"
+                       class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-300 hover:bg-gray-100">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if num == page_obj.number %}
+                        <span class="w-9 h-9 flex items-center justify-center rounded-lg bg-brand text-white font-medium">{{ num }}</span>
+                    {% elif num > page_obj.number|add:"-3" and num < page_obj.number|add:"3" %}
+                        <a href="?page={{ num }}&q={{ query }}&category={{ selected_category }}&min_price={{ min_price }}&max_price={{ max_price }}&sort={{ sort }}"
+                           class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-300 hover:bg-gray-100">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}&q={{ query }}&category={{ selected_category }}&min_price={{ min_price }}&max_price={{ max_price }}&sort={{ sort }}"
+                       class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-300 hover:bg-gray-100">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                {% endif %}
+            </div>
+            {% endif %}
+
+        {% else %}
+            <div class="text-center py-20">
+                <i class="bi bi-search text-5xl text-gray-300 mb-4 block"></i>
+                <p class="text-gray-500">Không tìm thấy sản phẩm phù hợp.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

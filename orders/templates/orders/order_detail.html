@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}Đơn hàng {{ order.order_code }}{% endblock %}
+{% block content %}
+
+<a href="{% url 'orders:order_history' %}" class="inline-flex items-center gap-1 text-gray-500 hover:text-brand text-sm mb-4">
+    <i class="bi bi-arrow-left"></i> Quay lại danh sách
+</a>
+
+<div class="flex items-center justify-between mb-6 flex-wrap gap-2">
+    <h1 class="text-2xl font-bold">Đơn hàng {{ order.order_code }}</h1>
+    <span class="bg-blue-100 text-blue-700 text-sm font-medium px-3 py-1 rounded-full">{{ order.get_status_display }}</span>
+</div>
+
+<div class="grid lg:grid-cols-3 gap-8">
+    <div class="lg:col-span-2 space-y-6">
+        <div class="card">
+            <h2 class="font-bold mb-3">Sản phẩm đã đặt</h2>
+            <div class="divide-y">
+                {% for item in order.items.all %}
+                <div class="flex justify-between items-center py-3 text-sm">
+                    <div>
+                        <p class="font-medium text-gray-800">{{ item.product_name }}</p>
+                        
+                        <!-- ===== HIỂN THỊ MÀU SẮC & KÍCH THƯỚC CHO KHÁCH ===== -->
+                        {% if item.color or item.size %}
+                        <p class="text-xs text-gray-500 mt-0.5">
+                            Phân loại: 
+                            <span class="font-semibold text-gray-700">
+                                {% if item.color %}{{ item.color }}{% endif %}
+                                {% if item.color and item.size %} / {% endif %}
+                                {% if item.size %}Size {{ item.size }}{% endif %}
+                            </span>
+                        </p>
+                        {% endif %}
+                        <!-- ================================================ -->
+
+                        <p class="text-gray-500 mt-1">{{ item.price|floatformat:0 }}₫ x {{ item.quantity }}</p>
+                    </div>
+                    <span class="font-semibold text-gray-900">{{ item.subtotal|floatformat:0 }}₫</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="lg:col-span-1 space-y-4">
+        <div class="card">
+            <h2 class="font-bold mb-3"><i class="bi bi-truck text-brand"></i> Giao hàng</h2>
+            <p class="text-sm text-gray-600">{{ order.shipping_address }}</p>
+            <p class="text-sm text-gray-600">{{ order.shipping_phone }}</p>
+        </div>
+
+        <div class="card">
+            <h2 class="font-bold mb-3"><i class="bi bi-credit-card text-brand"></i> Thanh toán</h2>
+            <p class="text-sm text-gray-600">{{ order.payment.get_method_display }}</p>
+            <p class="text-sm text-gray-600">{{ order.payment.get_status_display }}</p>
+        </div>
+
+        <div class="card">
+            <div class="flex justify-between font-bold text-lg">
+                <span>Tổng cộng</span>
+                <span class="text-red-600">{{ order.total_amount|floatformat:0 }}₫</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+/* Nâng ô input của Jazzmin cao lên một chút để có không gian cho chữ bay lên */
+.login-box .form-control {
+    height: 3.5rem !important;
+    padding-top: 1.25rem !important;
+    padding-bottom: 0.25rem !important;
+}
+
+/* Đảm bảo khung bao ngoài là điểm gốc */
+.login-box .input-group {
+    position: relative;
+}
+
+/* Đây là cái nhãn ảo do JS sinh ra */
+.custom-float-label {
+    position: absolute;
+    left: 12px;
+    top: 16px;
+    color: #6c757d;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: 0.2s ease all;
+    z-index: 5;
+    margin: 0;
+}
+
+/* Hiệu ứng khi nhấp chuột hoặc ô đã có chữ: Chữ nhỏ lại, bay lên trên và đổi màu xanh */
+.input-group.float-active .custom-float-label {
+    top: 4px;
+    font-size: 0.75rem;
+    color: #007bff; /* Màu xanh đặc trưng của Admin Bootstrap */
+    font-weight: 600;
+}

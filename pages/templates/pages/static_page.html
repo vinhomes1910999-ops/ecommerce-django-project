@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }}{% endblock %}
+{% block content %}
+
+<div class="max-w-3xl mx-auto">
+    <nav class="text-sm text-gray-500 mb-5">
+        <a href="{% url 'products:home' %}" class="hover:text-brand">Trang chủ</a>
+        <span class="mx-1">/</span>
+        <span class="text-gray-700">{{ page.title }}</span>
+    </nav>
+
+    <h1 class="text-2xl font-bold mb-6">{{ page.title }}</h1>
+
+    <div class="card prose prose-sm max-w-none text-gray-700 leading-relaxed">
+        {{ page.content|safe }}
+    </div>
+
+    <p class="text-xs text-gray-400 mt-4">Cập nhật lần cuối: {{ page.updated_at|date:"d/m/Y" }}</p>
+</div>
+
+{% endblock %}

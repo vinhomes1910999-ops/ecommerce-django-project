@@ -1,0 +1,41 @@
+/* ===== Tùy biến font chữ toàn trang Admin ===== */
+body.theme-default, .content-wrapper {
+    font-family: 'Segoe UI', 'Inter', -apple-system, sans-serif;
+}
+
+/* ===== Bo góc mềm mại hơn cho card/box ===== */
+.card, .small-box, .info-box {
+    border-radius: 14px !important;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+}
+
+/* ===== Bo góc cho bảng danh sách (changelist) ===== */
+#changelist-form .results {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* ===== Nút bấm mềm mại hơn ===== */
+.btn, .button {
+    border-radius: 8px !important;
+}
+
+/* ===== Sidebar menu — khoảng cách item thoáng hơn ===== */
+.nav-sidebar .nav-link {
+    border-radius: 8px;
+    margin: 2px 8px;
+}
+
+/* ===== Badge trạng thái tự tạo trong ModelAdmin — hover nhẹ ===== */
+.field-status_badge span, .field-stock_badge span {
+    display: inline-block;
+    transition: transform 0.15s ease;
+}
+.field-status_badge span:hover, .field-stock_badge span:hover {
+    transform: scale(1.05);
+}
+/* Ẩn hoàn toàn góc phải của chân trang (chứa chữ Jazzmin version) */
+footer.main-footer .float-right {
+    display: none !important;
+}

@@ -1,0 +1,287 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Shop{% endblock %}</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="min-h-screen flex flex-col bg-gray-50 text-gray-800">
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="bg-gray-900 text-white sticky top-0 z-50 shadow">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                
+                <!-- 1. LOGO -->
+                <a href="{% url 'products:home' %}" class="flex items-center gap-2 text-xl font-bold shrink-0">
+                    <i class="bi bi-shop"></i> My Shop
+                </a>
+
+                <!-- 2. SEARCH BAR (Desktop) -->
+                <div class="relative hidden md:block flex-1 max-w-md mx-6" x-data="searchSuggest()" @click.outside="open = false">
+                    
+                    <!-- Form Tìm Kiếm -->
+                    <form method="get" action="{% url 'products:product_list' %}" class="w-full">
+                        <div class="relative w-full">
+                            <input type="search" name="q" x-model="query" autocomplete="off"
+                                   id="dynamic-search" 
+                                   @input.debounce.300ms="fetchSuggestions()"
+                                   @focus="open = true; fetchSuggestions()"
+                                   placeholder="Tìm sản phẩm..."
+                                   class="w-full rounded-lg px-4 py-1.5 text-gray-900 text-sm border focus:outline-none focus:ring-2 focus:ring-brand">
+                        </div>
+                    </form>
+                    
+                    <!-- Dropdown Gợi ý tìm kiếm -->
+                    <div x-show="open" x-cloak x-transition
+                         class="absolute left-0 right-0 mt-2 bg-white text-gray-800 rounded-xl shadow-xl border border-gray-100 z-50 max-h-96 overflow-y-auto">
+                        
+                        <!-- LIVE SEARCH -->
+                        <template x-if="mode === 'live'">
+                            <div class="py-2">
+                                <template x-if="products.length === 0">
+                                    <p class="px-4 py-3 text-sm text-gray-400">Không tìm thấy sản phẩm phù hợp.</p>
+                                </template>
+                                <template x-for="p in products" :key="p.slug">
+                                    <a :href="p.url" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-50">
+                                        <img :src="p.image || 'https://via.placeholder.com/40'" class="w-10 h-10 rounded object-cover bg-gray-100 shrink-0">
+                                        <div class="min-w-0">
+                                            <p class="text-sm truncate" x-text="p.name"></p>
+                                            <p class="text-xs text-red-600 font-medium" x-text="formatPrice(p.price)"></p>
+                                        </div>
+                                    </a>
+                                </template>
+                            </div>
+                        </template>
+
+                        <!-- SUGGESTIONS -->
+                        <template x-if="mode === 'suggest'">
+                            <div class="py-3">
+                                <div class="px-4 mb-3" x-show="trendingKeywords.length">
+                                    <p class="text-xs font-semibold text-gray-400 uppercase mb-2">Danh mục phổ biến</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <template x-for="kw in trendingKeywords" :key="kw">
+                                            <a :href="'{% url 'products:product_list' %}?q=' + encodeURIComponent(kw)" class="text-xs bg-gray-100 hover:bg-brand hover:text-white px-3 py-1 rounded-full transition" x-text="kw"></a>
+                                        </template>
+                                    </div>
+                                </div>
+                                <div class="px-4 mb-3" x-show="seasonalProducts.length">
+                                    <p class="text-xs font-semibold text-gray-400 uppercase mb-2">
+                                        <i class="bi bi-stars text-brand"></i> Gợi ý cho bạn hôm nay
+                                    </p>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <template x-for="p in seasonalProducts" :key="p.slug">
+                                            <a :href="p.url" class="flex items-center gap-2 hover:bg-gray-50 rounded-lg p-1.5">
+                                                <img :src="p.image || 'https://via.placeholder.com/40'" class="w-9 h-9 rounded object-cover bg-gray-100 shrink-0">
+                                                <div class="min-w-0">
+                                                    <p class="text-xs truncate" x-text="p.name"></p>
+                                                    <p class="text-xs text-red-600 font-medium" x-text="formatPrice(p.price)"></p>
+                                                </div>
+                                            </a>
+                                        </template>
+                                    </div>
+                                </div>
+                                <div class="px-4 pt-3 border-t" x-show="trendingProducts.length">
+                                    <p class="text-xs font-semibold text-gray-400 uppercase mb-2">
+                                        <i class="bi bi-fire text-orange-500"></i> Đang bán chạy
+                                    </p>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <template x-for="p in trendingProducts" :key="p.slug">
+                                            <a :href="p.url" class="flex items-center gap-2 hover:bg-gray-50 rounded-lg p-1.5">
+                                                <img :src="p.image || 'https://via.placeholder.com/40'" class="w-9 h-9 rounded object-cover bg-gray-100 shrink-0">
+                                                <div class="min-w-0">
+                                                    <p class="text-xs truncate" x-text="p.name"></p>
+                                                    <p class="text-xs text-red-600 font-medium" x-text="formatPrice(p.price)"></p>
+                                                </div>
+                                            </a>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- 3. RIGHT MENU (Desktop) -->
+                <div class="hidden md:flex items-center gap-6 shrink-0">
+                    <a href="{% url 'products:home' %}" class="hover:text-brand text-sm font-medium">Trang chủ</a>
+                    <a href="{% url 'products:product_list' %}" class="hover:text-brand text-sm font-medium">Sản phẩm</a>
+                    <a href="{% url 'pages:contact' %}" class="hover:text-brand text-sm font-medium">Liên hệ</a>
+                    <a href="{% url 'cart:cart_detail' %}" class="hover:text-brand text-xl">
+                        <i class="bi bi-cart3"></i>
+                    </a>
+
+                    {% if user.is_authenticated %}
+                        <div class="relative group">
+                            <button class="flex items-center gap-1 hover:text-brand text-sm py-2">
+                                <i class="bi bi-person-circle text-lg"></i> {{ user.username }}
+                                <i class="bi bi-chevron-down text-xs"></i>
+                            </button>
+                            <div class="absolute right-0 top-full pt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition z-50">
+                                <div class="bg-white text-gray-800 rounded-lg shadow-lg border border-gray-100 overflow-hidden">
+                                    <a href="{% url 'accounts:profile' %}" class="block px-4 py-2 hover:bg-gray-100 text-sm">Hồ sơ</a>
+                                    <a href="{% url 'orders:order_history' %}" class="block px-4 py-2 hover:bg-gray-100 text-sm">Đơn hàng của tôi</a>
+                                    <hr class="border-gray-100 m-0">
+                                    <form method="post" action="{% url 'accounts:logout' %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="w-full text-left px-4 py-2 hover:bg-gray-100 text-sm text-red-600">Đăng xuất</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <a href="{% url 'accounts:login' %}" class="hover:text-brand text-sm">Đăng nhập</a>
+                        <a href="{% url 'accounts:register' %}" class="btn-primary text-sm py-1.5 px-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 transition text-white">Đăng ký</a>
+                    {% endif %}
+                </div>
+
+                <!-- 4. MOBILE MENU BUTTON -->
+                <button id="mobileMenuBtn" class="md:hidden text-2xl">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+
+            <!-- MOBILE MENU DROPDOWN -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4 space-y-2">
+                <form class="flex mb-2" method="get" action="{% url 'products:product_list' %}">
+                    <input type="search" name="q" placeholder="Tìm sản phẩm..." class="w-full rounded-lg px-3 py-1.5 text-gray-900 text-sm border">
+                </form>
+                <a href="{% url 'products:home' %}" class="block py-1 hover:text-brand">Trang chủ</a>
+                <a href="{% url 'products:product_list' %}" class="block py-1 hover:text-brand">Sản phẩm</a>
+                <a href="{% url 'pages:contact' %}" class="block py-1 hover:text-brand">Liên hệ</a>
+                <a href="{% url 'cart:cart_detail' %}" class="block py-1 hover:text-brand">Giỏ hàng ({{ cart_items_count|default:0 }})</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'accounts:profile' %}" class="block py-1 hover:text-brand">Hồ sơ ({{ user.username }})</a>
+                    <a href="{% url 'orders:order_history' %}" class="block py-1 hover:text-brand">Đơn hàng của tôi</a>
+                    <form method="post" action="{% url 'accounts:logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="block py-1 text-red-500 hover:text-red-700 text-left w-full">Đăng xuất</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'accounts:login' %}" class="block py-1 hover:text-brand">Đăng nhập</a>
+                    <a href="{% url 'accounts:register' %}" class="block py-1 hover:text-brand">Đăng ký</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== MESSAGES ========== -->
+    <div class="max-w-7xl mx-auto w-full px-4 mt-4">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="rounded-lg px-4 py-3 mb-2 text-sm
+                    {% if message.tags == 'success' %} bg-green-100 text-green-800 border border-green-200
+                    {% elif message.tags == 'error' %} bg-red-100 text-red-800 border border-red-200
+                    {% else %} bg-blue-100 text-blue-800 border border-blue-200 {% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- ========== NỘI DUNG CHÍNH ========== -->
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 py-6">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-gray-900 text-gray-300 mt-10">
+        <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
+            <div>
+                <h5 class="text-white font-semibold mb-2"><i class="bi bi-shop"></i> My Shop</h5>
+                <p class="text-sm text-gray-400">Website thương mại điện tử — Đồ án cuối kỳ.</p>
+            </div>
+            <div>
+                <h6 class="text-white font-semibold mb-2">Chính sách</h6>
+                <ul class="space-y-1 text-sm">
+                    <li><a href="{% url 'pages:static_page' 'chinh-sach-doi-tra' %}" class="hover:text-white">Chính sách đổi trả</a></li>
+                    <li><a href="{% url 'pages:static_page' 'chinh-sach-bao-hanh' %}" class="hover:text-white">Chính sách bảo hành</a></li>
+                    <li><a href="{% url 'pages:static_page' 'chinh-sach-van-chuyen' %}" class="hover:text-white">Chính sách vận chuyển</a></li>
+                </ul>
+            </div>
+            <div>
+                <h6 class="text-white font-semibold mb-2">Liên hệ</h6>
+                <ul class="space-y-1 text-sm text-gray-400">
+                    <li><i class="bi bi-geo-alt"></i> 320 Thới Hòa, Xã Vĩnh Lộc A, Bình Chánh, TP.HCM</li>
+                    <li><i class="bi bi-telephone"></i> 0363 754 852</li>
+                    <li><i class="bi bi-envelope"></i> vinhomes1910999@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 py-4 text-center text-sm text-gray-500">
+            &copy; 2026 My Shop — Đồ án cuối kỳ.
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS GOM CHUNG ========== -->
+    <script>
+        // 1. Script cho AlpineJS Search
+        function searchSuggest() {
+            return {
+                query: '',
+                open: false,
+                mode: 'suggest',
+                products: [],
+                seasonalProducts: [],
+                trendingProducts: [],
+                trendingKeywords: [],
+
+                fetchSuggestions() {
+                    fetch(`{% url 'products:search_suggestions' %}?q=${encodeURIComponent(this.query)}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            this.mode = data.mode;
+                            if (data.mode === 'live') {
+                                this.products = data.products;
+                            } else {
+                                this.seasonalProducts = data.seasonal_products;
+                                this.trendingProducts = data.trending_products;
+                                this.trendingKeywords = data.trending_keywords;
+                            }
+                        });
+                },
+                formatPrice(v) {
+                    return new Intl.NumberFormat('vi-VN').format(v) + '₫';
+                }
+            }
+        }
+
+        // 2. Script Toggle Menu Mobile
+        document.getElementById('mobileMenuBtn').addEventListener('click', function () {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        // 3. Script Hiệu ứng chữ chạy thanh tìm kiếm
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchInput = document.getElementById("dynamic-search");
+            if (searchInput) {
+                const trends = [
+                    "Tìm áo khoác mùa thu...", 
+                    "Quần dài trượt nước...",
+                    "Sale khủng tựu trường...",
+                    "Thời trang dạo phố..."
+                ];
+                let currentIndex = 0;
+
+                setInterval(() => {
+                    searchInput.style.transition = "opacity 0.3s";
+                    searchInput.style.opacity = 0; 
+                    setTimeout(() => {
+                        searchInput.setAttribute("placeholder", trends[currentIndex]);
+                        searchInput.style.opacity = 1; 
+                        currentIndex = (currentIndex + 1) % trends.length;
+                    }, 300);
+                }, 2500); 
+            }
+        });
+    </script>
+    
+    <!-- LỖ CHỜ CHO CÁC TRANG KHÁC DÁN JS VÀO ĐÂY -->
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
