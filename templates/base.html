@@ -15,11 +15,11 @@
     <!-- ========== NAVBAR ========== -->
     <nav class="bg-gray-900 text-white sticky top-0 z-50 shadow">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="flex items-center justify-between h-16">
+            <div class="flex items-center justify-between h-24">
                 
                 <!-- 1. LOGO -->
-                <a href="{% url 'products:home' %}" class="flex items-center gap-2 text-xl font-bold shrink-0">
-                    <i class="bi bi-shop"></i> My Shop
+                <a href="{% url 'products:home' %}" class="flex items-center shrink-0">
+                    <img src="{% static 'img/logo-final.png' %}?v=1" alt="My Shop" class="h-20 w-auto object-contain">
                 </a>
 
                 <!-- 2. SEARCH BAR (Desktop) -->
