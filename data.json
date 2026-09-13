@@ -1,0 +1,1883 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2026-08-18T12:31:59.579",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Áo Thun / Nam & Nữ (Unisex)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2026-08-18T12:35:25.446",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Áo phông form rộng Unisex",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o ph\\u00f4ng form r\\u1ed9ng Unisex\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o ph\\u00f4ng form r\\u1ed9ng Unisex\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o ph\\u00f4ng form r\\u1ed9ng Unisex\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2026-08-18T12:35:48.537",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Áo Khoác / Thu Đông",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2026-08-18T12:39:53.868",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "2",
+    "object_repr": "Decathlon Áo hoodie thể thao nam nữ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Decathlon \\u00c1o hoodie th\\u1ec3 thao nam n\\u1eef\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Decathlon \\u00c1o hoodie th\\u1ec3 thao nam n\\u1eef\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Decathlon \\u00c1o hoodie th\\u1ec3 thao nam n\\u1eef\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2026-08-18T12:40:19.317",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Quần / Jeans",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2026-08-18T12:42:24.412",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "3",
+    "object_repr": "Quần Jeans Vintage Form Suông Wide Leg",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Qu\\u1ea7n Jeans Vintage Form Su\\u00f4ng Wide Leg\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Qu\\u1ea7n Jeans Vintage Form Su\\u00f4ng Wide Leg\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Qu\\u1ea7n Jeans Vintage Form Su\\u00f4ng Wide Leg\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2026-08-18T12:43:35.873",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "4",
+    "object_repr": "võ văn tài nguyên",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2026-08-18T12:44:49.771",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "4",
+    "object_repr": "võ văn tài nguyên",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a v\\u00f5 v\\u0103n t\\u00e0i nguy\\u00ean\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a v\\u00f5 v\\u0103n t\\u00e0i nguy\\u00ean\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2026-08-20T20:24:05.347",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "5",
+    "object_repr": "Áo Polo Nam Vải Pique",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o Polo Nam V\\u1ea3i Pique\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o Polo Nam V\\u1ea3i Pique\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o Polo Nam V\\u1ea3i Pique\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2026-08-20T20:25:52.338",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "5",
+    "object_repr": "Áo Polo Nam Vải Pique",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\", \"Sale price\", \"Stock\"]}}, {\"changed\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o Polo Nam V\\u1ea3i Pique\", \"fields\": [\"Is thumbnail\"]}}, {\"changed\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o Polo Nam V\\u1ea3i Pique\", \"fields\": [\"Is thumbnail\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2026-08-20T20:26:30.600",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "Áo sơ mi",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2026-08-20T20:29:34.475",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "6",
+    "object_repr": "Áo Sơ Mi Lụa Trơn Nữ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o S\\u01a1 Mi L\\u1ee5a Tr\\u01a1n N\\u1eef\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o S\\u01a1 Mi L\\u1ee5a Tr\\u01a1n N\\u1eef\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o S\\u01a1 Mi L\\u1ee5a Tr\\u01a1n N\\u1eef\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2026-08-20T20:32:50.404",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "7",
+    "object_repr": "Áo Khoác Gió Trượt Nước",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o Kho\\u00e1c Gi\\u00f3 Tr\\u01b0\\u1ee3t N\\u01b0\\u1edbc\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o Kho\\u00e1c Gi\\u00f3 Tr\\u01b0\\u1ee3t N\\u01b0\\u1edbc\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2026-08-20T20:33:56.531",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Hoodie",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2026-08-20T20:37:10.861",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "8",
+    "object_repr": "Áo Hoodie Nỉ Bông",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o Hoodie N\\u1ec9 B\\u00f4ng\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o Hoodie N\\u1ec9 B\\u00f4ng\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o Hoodie N\\u1ec9 B\\u00f4ng\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a \\u00c1o Hoodie N\\u1ec9 B\\u00f4ng\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2026-08-20T20:37:41.854",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "6",
+    "object_repr": "Quần / vải",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2026-08-20T20:41:01.247",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "9",
+    "object_repr": "Quần Tây Nam Ống Suông",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Qu\\u1ea7n T\\u00e2y Nam \\u1ed0ng Su\\u00f4ng\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Qu\\u1ea7n T\\u00e2y Nam \\u1ed0ng Su\\u00f4ng\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Qu\\u1ea7n T\\u00e2y Nam \\u1ed0ng Su\\u00f4ng\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Qu\\u1ea7n T\\u00e2y Nam \\u1ed0ng Su\\u00f4ng\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2026-08-20T20:43:09.435",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "10",
+    "object_repr": "Quần Baggy Nữ Công Sở",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Qu\\u1ea7n Baggy N\\u1eef C\\u00f4ng S\\u1edf\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Qu\\u1ea7n Baggy N\\u1eef C\\u00f4ng S\\u1edf\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Qu\\u1ea7n Baggy N\\u1eef C\\u00f4ng S\\u1edf\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2026-08-20T20:45:03.515",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "11",
+    "object_repr": "Quần Jeans Ống Rộng Y2K",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Qu\\u1ea7n Jeans \\u1ed0ng R\\u1ed9ng Y2K\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Qu\\u1ea7n Jeans \\u1ed0ng R\\u1ed9ng Y2K\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Qu\\u1ea7n Jeans \\u1ed0ng R\\u1ed9ng Y2K\"}}, {\"added\": {\"name\": \"product image\", \"object\": \"\\u1ea2nh c\\u1ee7a Qu\\u1ea7n Jeans \\u1ed0ng R\\u1ed9ng Y2K\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2026-09-08T12:57:14.965",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "KM: Quần Jeans Ống Rộng Y2K (Phần trăm)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2026-09-10T23:03:56.829",
+    "user": 1,
+    "content_type": 20,
+    "object_id": "1",
+    "object_repr": "đen",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2026-09-10T23:04:26.235",
+    "user": 1,
+    "content_type": 21,
+    "object_id": "1",
+    "object_repr": "S",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2026-09-10T23:07:13.723",
+    "user": 1,
+    "content_type": 21,
+    "object_id": "2",
+    "object_repr": "S",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2026-09-10T23:07:13.976",
+    "user": 1,
+    "content_type": 21,
+    "object_id": "3",
+    "object_repr": "S",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2026-09-10T23:08:39.079",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "nguyenvo - Quần Jeans Vintage Form Suông Wide Leg (1★)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2026-09-10T23:09:20.912",
+    "user": 1,
+    "content_type": 21,
+    "object_id": "1",
+    "object_repr": "M",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"K\\u00edch th\\u01b0\\u1edbc\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2026-09-10T23:09:29.828",
+    "user": 1,
+    "content_type": 21,
+    "object_id": "2",
+    "object_repr": "L",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"K\\u00edch th\\u01b0\\u1edbc\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2026-09-10T23:10:17.590",
+    "user": 1,
+    "content_type": 20,
+    "object_id": "2",
+    "object_repr": "đỏ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2026-09-12T16:27:42.074",
+    "user": 1,
+    "content_type": 21,
+    "object_id": "4",
+    "object_repr": "XL",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2026-09-12T16:27:52.116",
+    "user": 1,
+    "content_type": 21,
+    "object_id": "5",
+    "object_repr": "XXL",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2026-09-12T16:28:04.732",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "11",
+    "object_repr": "Quần Jeans Ống Rộng Y2K",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"K\\u00edch th\\u01b0\\u1edbc\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2026-09-12T16:28:13.028",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "10",
+    "object_repr": "Quần Baggy Nữ Công Sở",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"K\\u00edch th\\u01b0\\u1edbc\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2026-09-12T16:28:29.614",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "9",
+    "object_repr": "Quần Tây Nam Ống Suông",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"K\\u00edch th\\u01b0\\u1edbc\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2026-09-12T16:28:38.230",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "8",
+    "object_repr": "Áo Hoodie Nỉ Bông",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"K\\u00edch th\\u01b0\\u1edbc\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2026-09-12T16:29:02.298",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "7",
+    "object_repr": "Áo Khoác Gió Trượt Nước",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"K\\u00edch th\\u01b0\\u1edbc\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2026-09-12T16:29:22.821",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "6",
+    "object_repr": "Áo Sơ Mi Lụa Trơn Nữ",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"K\\u00edch th\\u01b0\\u1edbc\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2026-09-12T16:29:33.039",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "5",
+    "object_repr": "Áo Polo Nam Vải Pique",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"K\\u00edch th\\u01b0\\u1edbc\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2026-09-12T16:30:51.579",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "4",
+    "object_repr": "119910",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Slug\", \"M\\u00e0u s\\u1eafc\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2026-09-12T16:31:11.155",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "3",
+    "object_repr": "Quần Jeans Vintage Form Suông Wide Leg",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"K\\u00edch th\\u01b0\\u1edbc\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2026-09-12T16:31:22.065",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "2",
+    "object_repr": "Decathlon Áo hoodie thể thao nam nữ",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"K\\u00edch th\\u01b0\\u1edbc\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2026-09-12T16:31:30.679",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Áo phông form rộng Unisex",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"K\\u00edch th\\u01b0\\u1edbc\"]}}]"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "1ziraul3qrw0f6t5cg6w857187n1avmo",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm2F_8o6XMGy-tdcAA5UpxUiLuTSCmgnZn33iLldalp7TynkcRFaHH6ZZjLk9su6JHbfZJlass8otwTedguh4n4dT3av4Oae93WRimjIBQsRp8pWuvhpoCs8S7mrIAtBMNM6JEgxIJEbsOE1pF1qMXnC8UqN70:1x4gsl:yZ6VHdGYowKTPpkjvTmbpuA5dkyUGLymhoPOy9kuMDc",
+    "expire_date": "2026-09-24T22:40:11.196"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "4v1ammvwty0cn45aoh4u33e05ajg0oyp",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm2F_8o6XMGy-tdcAA5UpxUiLuTSCmgnZn33iLldalp7TynkcRFaHH6ZZjLk9su6JHbfZJlass8otwTedguh4n4dT3av4Oae93WRimjIBQsRp8pWuvhpoCs8S7mrIAtBMNM6JEgxIJEbsOE1pF1qMXnC8UqN70:1wwKjM:I010x-HtIK-t90u8Lb9nPT1J3r9GZK-GsU1rGjnhhZI",
+    "expire_date": "2026-09-01T14:23:56.630"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9exwud2ik1ed7l6mm7u9fkpz5py9otfh",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm2F_8o6XMGy-tdcAA5UpxUiLuTSCmgnZn33iLldalp7TynkcRFaHH6ZZjLk9su6JHbfZJlass8otwTedguh4n4dT3av4Oae93WRimjIBQsRp8pWuvhpoCs8S7mrIAtBMNM6JEgxIJEbsOE1pF1qMXnC8UqN70:1wxmN1:_IgBraAwEidXitT_4NgVCPwqTs8sT_w0dnblPBBEY-0",
+    "expire_date": "2026-09-05T21:06:51.305"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "b40wc1by6b3e0fwbtg28b2q8sz6fen9x",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm2F_8o6XMGy-tdcAA5UpxUiLuTSCmgnZn33iLldalp7TynkcRFaHH6ZZjLk9su6JHbfZJlass8otwTedguh4n4dT3av4Oae93WRimjIBQsRp8pWuvhpoCs8S7mrIAtBMNM6JEgxIJEbsOE1pF1qMXnC8UqN70:1x3bzd:4_qYKaO2tw8AISV2csVI1GW1KxeI3pIEVMnPWR6K8gw",
+    "expire_date": "2026-09-21T23:14:49.910"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "d3hg6sk8x90golt4ch7eknf9j0d0f5fr",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm2F_8o6XMGy-tdcAA5UpxUiLuTSCmgnZn33iLldalp7TynkcRFaHH6ZZjLk9su6JHbfZJlass8otwTedguh4n4dT3av4Oae93WRimjIBQsRp8pWuvhpoCs8S7mrIAtBMNM6JEgxIJEbsOE1pF1qMXnC8UqN70:1x2i20:2u0jFsLzktbN5rad3C_wPB2SFitbnqLWRN4LfmvmpVc",
+    "expire_date": "2026-09-19T11:29:32.828"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ei8njeo07wflthujlcia9chwywwnc4g0",
+  "fields": {
+    "session_data": ".eJxVjDkOwjAURO_iGlm245WSnjNY_gs4gBwpTirE3UmkFNCN5r2Zt8hlXWpeO895JHEWXpx-Oyj45LYDepR2nyRObZlHkLsiD9rldSJ-XQ7376CWXrc1mhtRgMiseYgqRtIOg03aB3IBoQzJOEyog_IKmIqzdosGwEUK0YvPF_E0N7g:1x5Nc1:VJr_tfxlFFgGOennOmaon2cXn2yuzFVlcHQeIhaZ5oA",
+    "expire_date": "2026-09-26T20:17:45.047"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hm8lccz97nmkgr3hurdyw5u6pkhyidll",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSFAebp07zeQAWakaiAp7cr479qkC93ec859sQjbWuM2cIlzYWc2sdPvliA_sO2g3KHdOs-9rcuc-K7wgw5-7QWfl8P9O6gw6rfOZLJwUjrAEkh6mRN6UhOaSaMyAVwg1EDoNWkKKFSwygqrsyCRiNj7A_vIOHY:1wwJcj:4-romnn56uVnH5g3uJnScy6gkbYTqBtlry1LkzyN5zI",
+    "expire_date": "2026-09-01T13:13:01.906"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hz5v47nobnakv2ud7yryx118xx6zq29t",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm2F_8o6XMGy-tdcAA5UpxUiLuTSCmgnZn33iLldalp7TynkcRFaHH6ZZjLk9su6JHbfZJlass8otwTedguh4n4dT3av4Oae93WRimjIBQsRp8pWuvhpoCs8S7mrIAtBMNM6JEgxIJEbsOE1pF1qMXnC8UqN70:1x4h7D:OOPhmCC0UOQ1rlBJ0zW6d43PCYTFRZ8tALfdgw4xAxE",
+    "expire_date": "2026-09-24T22:55:07.970"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "iatmze70op3p4f1vxuho24u63vhwps6x",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm2F_8o6XMGy-tdcAA5UpxUiLuTSCmgnZn33iLldalp7TynkcRFaHH6ZZjLk9su6JHbfZJlass8otwTedguh4n4dT3av4Oae93WRimjIBQsRp8pWuvhpoCs8S7mrIAtBMNM6JEgxIJEbsOE1pF1qMXnC8UqN70:1x3bzc:HU3QB8_atIBRbW-ro_00GZD6r59mK09jrGEpHAqQ9U4",
+    "expire_date": "2026-09-21T23:14:48.743"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "mgp7iw07iq8i3r0pp6simyp5z8psa8iy",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm2F_8o6XMGy-tdcAA5UpxUiLuTSCmgnZn33iLldalp7TynkcRFaHH6ZZjLk9su6JHbfZJlass8otwTedguh4n4dT3av4Oae93WRimjIBQsRp8pWuvhpoCs8S7mrIAtBMNM6JEgxIJEbsOE1pF1qMXnC8UqN70:1wx4b1:OXYCe5A9B3lkKRU7_oEVGXETUSOFY-Ms9K8CnChnaEk",
+    "expire_date": "2026-09-03T22:22:23.782"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "nxjo9dcx6zt0mxxg8froc87h41t678sd",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm2F_8o6XMGy-tdcAA5UpxUiLuTSCmgnZn33iLldalp7TynkcRFaHH6ZZjLk9su6JHbfZJlass8otwTedguh4n4dT3av4Oae93WRimjIBQsRp8pWuvhpoCs8S7mrIAtBMNM6JEgxIJEbsOE1pF1qMXnC8UqN70:1wwJiW:D1nq5Wv1z7bPe0NNCcQC6LLm27SWf_C1AgpraqSRV-Y",
+    "expire_date": "2026-09-01T13:19:00.454"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "rilicjrklmgobax1gzg4r0l8f532u97k",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm2F_8o6XMGy-tdcAA5UpxUiLuTSCmgnZn33iLldalp7TynkcRFaHH6ZZjLk9su6JHbfZJlass8otwTedguh4n4dT3av4Oae93WRimjIBQsRp8pWuvhpoCs8S7mrIAtBMNM6JEgxIJEbsOE1pF1qMXnC8UqN70:1x3QDw:l0qpRDeupnZ2x4Xu5GFAmv18dAYN9BnV1xB-egMkg_4",
+    "expire_date": "2026-09-21T10:40:48.183"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "vgibc7od7fffzgxdkxvoslccseufdy1f",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm2F_8o6XMGy-tdcAA5UpxUiLuTSCmgnZn33iLldalp7TynkcRFaHH6ZZjLk9su6JHbfZJlass8otwTedguh4n4dT3av4Oae93WRimjIBQsRp8pWuvhpoCs8S7mrIAtBMNM6JEgxIJEbsOE1pF1qMXnC8UqN70:1x4GC8:cG2eHvPPGLbUgYSUofs3UwNztguNjuvzW_RC96dRpVI",
+    "expire_date": "2026-09-23T18:10:24.144"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "wptt4wxensu6ytwm1m42bey9hl4u5d1c",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm2F_8o6XMGy-tdcAA5UpxUiLuTSCmgnZn33iLldalp7TynkcRFaHH6ZZjLk9su6JHbfZJlass8otwTedguh4n4dT3av4Oae93WRimjIBQsRp8pWuvhpoCs8S7mrIAtBMNM6JEgxIJEbsOE1pF1qMXnC8UqN70:1x3ogO:lYTdIN1yEK5xVO8LTlvOnyFLIjMQYlg26OXimTZl8vQ",
+    "expire_date": "2026-09-22T12:47:48.716"
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$uuLtMCwdDXotKxoDHCTJYT$RD35+BfKIXBHZ+3BUnxSOVOiZPmTVdBWrNzRaLUhQ3E=",
+    "last_login": "2026-09-10T22:57:48.996",
+    "is_superuser": true,
+    "username": "nguyenvo",
+    "first_name": "",
+    "last_name": "",
+    "email": "vinhomes1910999@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-08-18T06:51:05.287",
+    "phone": "",
+    "address": "",
+    "role": "customer",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$dBZp9ntmxuYUsenI6kWLke$+C9lgENa2Vbh9zoCn4KYFgZD1DlEcKLHG+B6vTgu9Kc=",
+    "last_login": "2026-08-18T13:12:12.807",
+    "is_superuser": false,
+    "username": "Tram",
+    "first_name": "",
+    "last_name": "",
+    "email": "htbt2632007@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-18T13:12:11.930",
+    "phone": "0332816025",
+    "address": "",
+    "role": "customer",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$EifUeh2X05Upop2oc4sf2E$hhCjH3/vWlTnaUOS3nvWdwFGg+6k2vZqIVB1KKykzI4=",
+    "last_login": "2026-08-18T13:13:01.879",
+    "is_superuser": false,
+    "username": "lf67.",
+    "first_name": "",
+    "last_name": "",
+    "email": "linh750370@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-18T13:13:00.249",
+    "phone": "0933397060",
+    "address": "",
+    "role": "customer",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$lPjIrBuES1IVYDfJQYjX9F$CQE1tREIphUIG96yDkXfpOc3zuovDMpM9os1KrgV8cs=",
+    "last_login": "2026-08-18T14:23:42.747",
+    "is_superuser": false,
+    "username": "imVic21",
+    "first_name": "",
+    "last_name": "",
+    "email": "lv2589286@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-18T14:11:06.352",
+    "phone": "0907718867",
+    "address": "",
+    "role": "customer",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$2nCif5ahVVGxKSDaQURnU5$SKt6RWKPjZ3JM1T+lFLAMR/EYCvWbDiL9aks85/rIZM=",
+    "last_login": "2026-09-05T11:23:12.372",
+    "is_superuser": false,
+    "username": "hinguyenvo",
+    "first_name": "",
+    "last_name": "",
+    "email": "sokokobiet@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-05T11:23:11.687",
+    "phone": "0932929421",
+    "address": "",
+    "role": "customer",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$XGUsLs60IDUSB8YrSaZDuS$v8L2zTSf+fsdx7vbi401dWBvdGxoiBPT/Rl150pFjxk=",
+    "last_login": "2026-09-12T20:17:45.024",
+    "is_superuser": false,
+    "username": "lol",
+    "first_name": "",
+    "last_name": "",
+    "email": "lol123@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-12T20:17:43.645",
+    "phone": "1234567890",
+    "address": "",
+    "role": "customer",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "products.category",
+  "pk": 1,
+  "fields": {
+    "name": "Áo Thun / Nam & Nữ (Unisex)",
+    "slug": "ao-thun-nam-n-unisex",
+    "parent": null,
+    "created_at": "2026-08-18T12:31:59.573"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 2,
+  "fields": {
+    "name": "Áo Khoác / Thu Đông",
+    "slug": "ao-khoac-thu-djong",
+    "parent": null,
+    "created_at": "2026-08-18T12:35:48.530"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 3,
+  "fields": {
+    "name": "Quần / Jeans",
+    "slug": "qun-jeans",
+    "parent": null,
+    "created_at": "2026-08-18T12:40:19.307"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 4,
+  "fields": {
+    "name": "Áo sơ mi",
+    "slug": "ao-s-mi",
+    "parent": null,
+    "created_at": "2026-08-20T20:26:30.594"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 5,
+  "fields": {
+    "name": "Hoodie",
+    "slug": "hoodie",
+    "parent": null,
+    "created_at": "2026-08-20T20:33:56.525"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 6,
+  "fields": {
+    "name": "Quần / vải",
+    "slug": "qun-vi",
+    "parent": null,
+    "created_at": "2026-08-20T20:37:41.842"
+  }
+},
+{
+  "model": "products.color",
+  "pk": 1,
+  "fields": {
+    "name": "đen",
+    "hex_code": "#000000"
+  }
+},
+{
+  "model": "products.color",
+  "pk": 2,
+  "fields": {
+    "name": "đỏ",
+    "hex_code": "#ff0000"
+  }
+},
+{
+  "model": "products.size",
+  "pk": 1,
+  "fields": {
+    "name": "M"
+  }
+},
+{
+  "model": "products.size",
+  "pk": 2,
+  "fields": {
+    "name": "L"
+  }
+},
+{
+  "model": "products.size",
+  "pk": 3,
+  "fields": {
+    "name": "S"
+  }
+},
+{
+  "model": "products.size",
+  "pk": 4,
+  "fields": {
+    "name": "XL"
+  }
+},
+{
+  "model": "products.size",
+  "pk": 5,
+  "fields": {
+    "name": "XXL"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "name": "Áo phông form rộng Unisex",
+    "slug": "ao-phong-form-rng-unisex",
+    "description": "Dáng áo rộng , thoải mái . nam mặc vô sẽ nhìn giống NỮ và nữ mặc vào nhìn giống NAM - RẤT PHÙ HỢP CHO GAY VÀ LESBIAN",
+    "price": "999999.00",
+    "sale_price": "999998.00",
+    "stock": 100,
+    "sold_count": 0,
+    "is_active": true,
+    "created_at": "2026-08-18T12:35:25.360",
+    "updated_at": "2026-09-12T16:31:30.669",
+    "colors": [],
+    "sizes": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "category": 2,
+    "name": "Decathlon Áo hoodie thể thao nam nữ",
+    "slug": "decathlon-ao-hoodie-th-thao-nam-n",
+    "description": "Mô tả chi tiết: Thiết kế form rộng thoải mái, giữ ấm tốt, cực kỳ thích hợp cho cả đi chơi, tập luyện hay dạo phố mùa lạnh.\r\nđừng mặc vào mùa hè nếu k muốn chết nóng",
+    "price": "9999999.00",
+    "sale_price": "8888888.00",
+    "stock": 100,
+    "sold_count": 0,
+    "is_active": true,
+    "created_at": "2026-08-18T12:39:53.576",
+    "updated_at": "2026-09-12T16:31:22.054",
+    "colors": [],
+    "sizes": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "category": 3,
+    "name": "Quần Jeans Vintage Form Suông Wide Leg",
+    "slug": "qun-jeans-vintage-form-suong-wide-leg",
+    "description": "Mô tả chi tiết: Chất liệu denim cao cấp, đứng form, màu xám wash chuẩn phong cách retro, giúp kéo dài chân và tôn dáng cực tốt.",
+    "price": "555000.00",
+    "sale_price": "320000.00",
+    "stock": 97,
+    "sold_count": 3,
+    "is_active": true,
+    "created_at": "2026-08-18T12:42:24.314",
+    "updated_at": "2026-09-12T20:22:16.892",
+    "colors": [],
+    "sizes": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "category": 1,
+    "name": "119910",
+    "slug": "119910",
+    "description": "helo baby",
+    "price": "9999999999.00",
+    "sale_price": "9999999999.00",
+    "stock": 0,
+    "sold_count": 1,
+    "is_active": true,
+    "created_at": "2026-08-18T12:43:35.866",
+    "updated_at": "2026-09-12T16:30:51.569",
+    "colors": [
+      1,
+      2
+    ],
+    "sizes": []
+  }
+},
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "category": 1,
+    "name": "Áo Polo Nam Vải Pique",
+    "slug": "ao-polo-nam-vi-pique",
+    "description": "Chất liệu Pique cao cấp mang lại cảm giác thoáng mát và thấm hút mồ hôi vượt trội trong suốt ngày dài. Thiết kế cổ bẻ thanh lịch kết hợp cùng form dáng ôm vừa vặn, giúp tôn lên đường nét nam tính.",
+    "price": "250000.00",
+    "sale_price": "220000.00",
+    "stock": 100,
+    "sold_count": 0,
+    "is_active": true,
+    "created_at": "2026-08-20T20:24:05.151",
+    "updated_at": "2026-09-12T16:29:33.027",
+    "colors": [],
+    "sizes": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 6,
+  "fields": {
+    "category": 4,
+    "name": "Áo Sơ Mi Lụa Trơn Nữ",
+    "slug": "ao-s-mi-la-trn-n",
+    "description": "Chiếc áo mang vẻ đẹp tinh tế với chất liệu lụa satin mềm rủ, tạo hiệu ứng bóng nhẹ vô cùng sang trọng. Thiết kế tối giản, chất vải ít nhăn giúp tiết kiệm thời gian là ủi mà vẫn giữ được sự chỉn chu. Dễ dàng mix-match cùng chân váy chữ A hoặc quần âu, là lựa chọn tuyệt vời cho các quý cô hiện đại.",
+    "price": "280000.00",
+    "sale_price": "250000.00",
+    "stock": 100,
+    "sold_count": 0,
+    "is_active": true,
+    "created_at": "2026-08-20T20:29:34.375",
+    "updated_at": "2026-09-12T16:29:22.812",
+    "colors": [],
+    "sizes": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 7,
+  "fields": {
+    "category": 2,
+    "name": "Áo Khoác Gió Trượt Nước",
+    "slug": "ao-khoac-gio-trt-nc",
+    "description": "Được gia công từ lớp vải dù thông minh với công nghệ trượt nước ưu việt, bảo vệ bạn an toàn khỏi những cơn mưa rào bất chợt hoặc sương mù. Áo có trọng lượng siêu nhẹ, đi kèm mũ trùm đầu tiện dụng và hệ thống túi khóa kéo an toàn. Món đồ bảo hộ không thể thiếu cho những chuyến đi phượt hoặc thời tiết giao mùa.",
+    "price": "650000.00",
+    "sale_price": "599000.00",
+    "stock": 100,
+    "sold_count": 0,
+    "is_active": true,
+    "created_at": "2026-08-20T20:32:50.316",
+    "updated_at": "2026-09-12T16:29:02.281",
+    "colors": [],
+    "sizes": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 8,
+  "fields": {
+    "category": 5,
+    "name": "Áo Hoodie Nỉ Bông",
+    "slug": "ao-hoodie-n-bong",
+    "description": "Mặt trong được lót một lớp nỉ bông dày dặn, giữ ấm cơ thể tối đa mà không hề gây cảm giác nặng nề, bí bách. Thiết kế mũ trùm đầu rộng rãi, dây rút cá tính cùng túi bụng kangaroo siêu tiện lợi. Gam màu basic dễ mặc, mang lại diện mạo trẻ trung, ấm áp trong những ngày đông lạnh giá.",
+    "price": "599000.00",
+    "sale_price": "399000.00",
+    "stock": 20,
+    "sold_count": 0,
+    "is_active": true,
+    "created_at": "2026-08-20T20:37:10.580",
+    "updated_at": "2026-09-12T16:28:38.221",
+    "colors": [],
+    "sizes": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 9,
+  "fields": {
+    "category": 6,
+    "name": "Quần Tây Nam Ống Suông",
+    "slug": "qun-tay-nam-ng-suong",
+    "description": "May từ chất liệu vải tuyết mưa cao cấp, quần lên chuẩn form, đứng dáng và đặc biệt chống xù lông, chống nhăn cực kỳ hiệu quả. Đường may tỉ mỉ, thiết kế đai quần tinh tế mang đến diện mạo lịch lãm, chuyên nghiệp. Kết hợp hoàn hảo cùng áo sơ mi và giày tây để tạo nên phong cách quý ông.",
+    "price": "399000.00",
+    "sale_price": "309999.00",
+    "stock": 36,
+    "sold_count": 0,
+    "is_active": true,
+    "created_at": "2026-08-20T20:41:01.115",
+    "updated_at": "2026-09-12T16:28:29.605",
+    "colors": [],
+    "sizes": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 10,
+  "fields": {
+    "category": 6,
+    "name": "Quần Baggy Nữ Công Sở",
+    "slug": "qun-baggy-n-cong-s",
+    "description": "Thiết kế phần hông xếp ly nhẹ và thu nhỏ dần về phía ống quần giúp che khuyết điểm vùng đùi và vòng 2 vô cùng hiệu quả. Chất vải co giãn nhẹ, thoáng khí, đảm bảo sự thoải mái tuyệt đối dù bạn phải ngồi làm việc cả ngày dài. Gam màu trung tính, tôn da và cực kỳ dễ phối đồ.",
+    "price": "499000.00",
+    "sale_price": "439000.00",
+    "stock": 63,
+    "sold_count": 4,
+    "is_active": true,
+    "created_at": "2026-08-20T20:43:09.285",
+    "updated_at": "2026-09-12T20:22:16.889",
+    "colors": [],
+    "sizes": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 11,
+  "fields": {
+    "category": 3,
+    "name": "Quần Jeans Ống Rộng Y2K",
+    "slug": "qun-jeans-ng-rng-y2k",
+    "description": "Mang đậm hơi thở cá tính của thập niên 2000, chiếc quần jeans gây ấn tượng mạnh với form ống rộng, cạp cao hack dáng cực \"chất\". Chất liệu denim dày dặn, trải qua quy trình wash màu kỹ lưỡng tạo nên hiệu ứng mài mòn vintage rất bắt mắt. Phối cùng áo croptop sẽ tạo nên một outfit bùng nổ, trendy.",
+    "price": "999000.00",
+    "sale_price": "799000.00",
+    "stock": 119,
+    "sold_count": 1,
+    "is_active": true,
+    "created_at": "2026-08-20T20:45:03.298",
+    "updated_at": "2026-09-12T20:22:16.893",
+    "colors": [],
+    "sizes": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "image": "products/hình_ảnh_2026-08-18_193437511.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "image": "products/hình_ảnh_2026-08-18_193452333.png",
+    "is_thumbnail": false,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 3,
+  "fields": {
+    "product": 1,
+    "image": "products/hình_ảnh_2026-08-18_193516896.png",
+    "is_thumbnail": false,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 4,
+  "fields": {
+    "product": 2,
+    "image": "products/hình_ảnh_2026-08-18_193852630.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 5,
+  "fields": {
+    "product": 2,
+    "image": "products/hình_ảnh_2026-08-18_193917996.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 6,
+  "fields": {
+    "product": 2,
+    "image": "products/hình_ảnh_2026-08-18_193946991.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 7,
+  "fields": {
+    "product": 3,
+    "image": "products/hình_ảnh_2026-08-18_194145445.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 8,
+  "fields": {
+    "product": 3,
+    "image": "products/hình_ảnh_2026-08-18_194155569.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 9,
+  "fields": {
+    "product": 3,
+    "image": "products/hình_ảnh_2026-08-18_194216432.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 10,
+  "fields": {
+    "product": 4,
+    "image": "products/FUOC2646.jpg",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 11,
+  "fields": {
+    "product": 4,
+    "image": "products/CDM_9105.jpg",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 12,
+  "fields": {
+    "product": 5,
+    "image": "products/hình_ảnh_2026-08-20_202030786.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 13,
+  "fields": {
+    "product": 5,
+    "image": "products/hình_ảnh_2026-08-20_202134717.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 14,
+  "fields": {
+    "product": 5,
+    "image": "products/hình_ảnh_2026-08-20_202321502.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 15,
+  "fields": {
+    "product": 6,
+    "image": "products/hình_ảnh_2026-08-20_202821015.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 16,
+  "fields": {
+    "product": 6,
+    "image": "products/hình_ảnh_2026-08-20_202843218.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 17,
+  "fields": {
+    "product": 6,
+    "image": "products/hình_ảnh_2026-08-20_202905047.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 18,
+  "fields": {
+    "product": 7,
+    "image": "products/hình_ảnh_2026-08-20_203157664.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 19,
+  "fields": {
+    "product": 7,
+    "image": "products/hình_ảnh_2026-08-20_203226563.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 20,
+  "fields": {
+    "product": 8,
+    "image": "products/hình_ảnh_2026-08-20_203639077.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 21,
+  "fields": {
+    "product": 8,
+    "image": "products/hình_ảnh_2026-08-20_203650054.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 22,
+  "fields": {
+    "product": 8,
+    "image": "products/hình_ảnh_2026-08-20_203657801.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 23,
+  "fields": {
+    "product": 8,
+    "image": "products/hình_ảnh_2026-08-20_203706305.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 24,
+  "fields": {
+    "product": 9,
+    "image": "products/hình_ảnh_2026-08-20_204019677.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 25,
+  "fields": {
+    "product": 9,
+    "image": "products/hình_ảnh_2026-08-20_204034332.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 26,
+  "fields": {
+    "product": 9,
+    "image": "products/hình_ảnh_2026-08-20_204043446.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 27,
+  "fields": {
+    "product": 9,
+    "image": "products/hình_ảnh_2026-08-20_204051560.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 28,
+  "fields": {
+    "product": 10,
+    "image": "products/hình_ảnh_2026-08-20_204206053.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 29,
+  "fields": {
+    "product": 10,
+    "image": "products/hình_ảnh_2026-08-20_204233155.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 30,
+  "fields": {
+    "product": 10,
+    "image": "products/hình_ảnh_2026-08-20_204244814.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 31,
+  "fields": {
+    "product": 11,
+    "image": "products/hình_ảnh_2026-08-20_204402026.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 32,
+  "fields": {
+    "product": 11,
+    "image": "products/hình_ảnh_2026-08-20_204414807.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 33,
+  "fields": {
+    "product": 11,
+    "image": "products/hình_ảnh_2026-08-20_204425935.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 34,
+  "fields": {
+    "product": 11,
+    "image": "products/hình_ảnh_2026-08-20_204436789.png",
+    "is_thumbnail": true,
+    "sort_order": 0
+  }
+},
+{
+  "model": "products.promotion",
+  "pk": 1,
+  "fields": {
+    "product": 11,
+    "discount_type": "percent",
+    "discount_value": "20.00",
+    "start_date": "2026-09-08T12:56:58",
+    "end_date": "2026-09-10T12:57:07",
+    "is_active": true
+  }
+},
+{
+  "model": "products.review",
+  "pk": 2,
+  "fields": {
+    "product": 4,
+    "user": 1,
+    "rating": 5,
+    "content": "chủ shop là người rất đẹp trai ",
+    "created_at": "2026-08-18T12:59:22.860"
+  }
+},
+{
+  "model": "products.review",
+  "pk": 3,
+  "fields": {
+    "product": 4,
+    "user": 3,
+    "rating": 5,
+    "content": "sp trai nghiem rat tot 🫪🫪🫪🌺🌹🌷🪷🪻🌸🌸🌻🌝",
+    "created_at": "2026-08-18T13:15:32.458"
+  }
+},
+{
+  "model": "products.review",
+  "pk": 4,
+  "fields": {
+    "product": 4,
+    "user": 4,
+    "rating": 5,
+    "content": "sản phẩm khá gay",
+    "created_at": "2026-08-18T14:11:36.717"
+  }
+},
+{
+  "model": "products.review",
+  "pk": 5,
+  "fields": {
+    "product": 3,
+    "user": 6,
+    "rating": 4,
+    "content": "quần tốt",
+    "created_at": "2026-09-12T20:19:02.433"
+  }
+},
+{
+  "model": "products.comment",
+  "pk": 1,
+  "fields": {
+    "product": 4,
+    "user": 1,
+    "parent": null,
+    "content": "cam on a19 cam on a16 cam on huyta nk lf vic ngthu truc calmeris",
+    "created_at": "2026-08-18T13:00:11.296"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "created_at": "2026-08-18T12:28:48.298"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 2,
+  "fields": {
+    "user": 2,
+    "created_at": "2026-08-18T13:12:13.157"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 3,
+  "fields": {
+    "user": 3,
+    "created_at": "2026-08-18T13:13:02.368"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 4,
+  "fields": {
+    "user": 4,
+    "created_at": "2026-08-18T14:11:07.413"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 5,
+  "fields": {
+    "user": 5,
+    "created_at": "2026-09-05T11:23:12.720"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 6,
+  "fields": {
+    "user": 6,
+    "created_at": "2026-09-12T20:17:45.402"
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 11,
+  "fields": {
+    "cart": 1,
+    "product": 6,
+    "quantity": 1,
+    "color": "",
+    "size": "L",
+    "added_at": "2026-09-12T20:15:52.050"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "order_code": "ORD9834AEDF45",
+    "status": "pending",
+    "shipping_address": "Xuan Loc Dong Nai",
+    "shipping_phone": "0332816025",
+    "total_amount": "9999999999.00",
+    "note": "",
+    "created_at": "2026-08-18T13:13:02.703",
+    "updated_at": "2026-08-18T13:13:02.703"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "order_code": "ORDD71A57305F",
+    "status": "pending",
+    "shipping_address": "367 liên quân",
+    "shipping_phone": "0933397060",
+    "total_amount": "320000.00",
+    "note": "muốn giao đi đâu cũng được",
+    "created_at": "2026-08-18T13:17:30.881",
+    "updated_at": "2026-08-18T13:17:30.881"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 3,
+  "fields": {
+    "user": 5,
+    "order_code": "ORD8E3D599384",
+    "status": "shipping",
+    "shipping_address": "đá",
+    "shipping_phone": "0932929421",
+    "total_amount": "439000.00",
+    "note": "dá",
+    "created_at": "2026-09-05T11:23:36.770",
+    "updated_at": "2026-09-05T11:23:36.770"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 4,
+  "fields": {
+    "user": 1,
+    "order_code": "ORD6ECCDC44F7",
+    "status": "pending",
+    "shipping_address": "36 NGUYỄN GIA TRÍ",
+    "shipping_phone": "0933248252",
+    "total_amount": "1198000.00",
+    "note": "",
+    "created_at": "2026-09-08T12:15:10.946",
+    "updated_at": "2026-09-08T12:15:10.946"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 5,
+  "fields": {
+    "user": 6,
+    "order_code": "ORD426CBA5F32",
+    "status": "pending",
+    "shipping_address": "white house",
+    "shipping_phone": "1234567890",
+    "total_amount": "1558000.00",
+    "note": "giao cho bảo vệ",
+    "created_at": "2026-09-12T20:22:16.879",
+    "updated_at": "2026-09-12T20:22:16.879"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 1,
+  "fields": {
+    "order": 1,
+    "product": 4,
+    "product_name": "võ văn tài nguyên",
+    "price": "9999999999.00",
+    "quantity": 1,
+    "color": null,
+    "size": null
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 2,
+  "fields": {
+    "order": 2,
+    "product": 3,
+    "product_name": "Quần Jeans Vintage Form Suông Wide Leg",
+    "price": "320000.00",
+    "quantity": 1,
+    "color": null,
+    "size": null
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 3,
+  "fields": {
+    "order": 3,
+    "product": 10,
+    "product_name": "Quần Baggy Nữ Công Sở",
+    "price": "439000.00",
+    "quantity": 1,
+    "color": "",
+    "size": ""
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 4,
+  "fields": {
+    "order": 4,
+    "product": 10,
+    "product_name": "Quần Baggy Nữ Công Sở",
+    "price": "439000.00",
+    "quantity": 2,
+    "color": "",
+    "size": ""
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 5,
+  "fields": {
+    "order": 4,
+    "product": 3,
+    "product_name": "Quần Jeans Vintage Form Suông Wide Leg",
+    "price": "320000.00",
+    "quantity": 1,
+    "color": "",
+    "size": ""
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 6,
+  "fields": {
+    "order": 5,
+    "product": 10,
+    "product_name": "Quần Baggy Nữ Công Sở",
+    "price": "439000.00",
+    "quantity": 1,
+    "color": "",
+    "size": "XL"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 7,
+  "fields": {
+    "order": 5,
+    "product": 3,
+    "product_name": "Quần Jeans Vintage Form Suông Wide Leg",
+    "price": "320000.00",
+    "quantity": 1,
+    "color": "",
+    "size": "L"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 8,
+  "fields": {
+    "order": 5,
+    "product": 11,
+    "product_name": "Quần Jeans Ống Rộng Y2K",
+    "price": "799000.00",
+    "quantity": 1,
+    "color": "",
+    "size": "S"
+  }
+},
+{
+  "model": "orders.payment",
+  "pk": 1,
+  "fields": {
+    "order": 1,
+    "method": "cod",
+    "status": "unpaid",
+    "paid_at": null,
+    "transaction_ref": ""
+  }
+},
+{
+  "model": "orders.payment",
+  "pk": 2,
+  "fields": {
+    "order": 2,
+    "method": "cod",
+    "status": "unpaid",
+    "paid_at": null,
+    "transaction_ref": ""
+  }
+},
+{
+  "model": "orders.payment",
+  "pk": 3,
+  "fields": {
+    "order": 3,
+    "method": "bank_transfer",
+    "status": "unpaid",
+    "paid_at": null,
+    "transaction_ref": ""
+  }
+},
+{
+  "model": "orders.payment",
+  "pk": 4,
+  "fields": {
+    "order": 4,
+    "method": "momo",
+    "status": "unpaid",
+    "paid_at": null,
+    "transaction_ref": ""
+  }
+},
+{
+  "model": "orders.payment",
+  "pk": 5,
+  "fields": {
+    "order": 5,
+    "method": "cod",
+    "status": "unpaid",
+    "paid_at": null,
+    "transaction_ref": ""
+  }
+},
+{
+  "model": "pages.contactmessage",
+  "pk": 1,
+  "fields": {
+    "full_name": "trâm",
+    "email": "htbt2632007@gmail.com",
+    "phone": "0332816025",
+    "subject": "",
+    "message": "helo chủ shop",
+    "is_resolved": false,
+    "created_at": "2026-08-18T13:16:07.347"
+  }
+},
+{
+  "model": "pages.contactmessage",
+  "pk": 2,
+  "fields": {
+    "full_name": "Lê Quang Vinh",
+    "email": "lv2589286@gmail.com",
+    "phone": "0907718867",
+    "subject": "ConCak",
+    "message": "gay...",
+    "is_resolved": false,
+    "created_at": "2026-08-18T14:14:12.015"
+  }
+}
+]
